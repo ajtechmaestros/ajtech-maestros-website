@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Button from '../components/Button.astro';
 import { navItems, siteConfig, whatsappUrl } from '../site.config';
 
 interface Props {
@@ -11,6 +12,9 @@ const {
   title = `${siteConfig.name} | ${siteConfig.tagline}`,
   description = siteConfig.description,
 } = Astro.props;
+
+const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <!doctype html>
@@ -20,53 +24,111 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f1115" />
+    <link rel="icon" type="image/svg+xml" href="/ajtm-mark.svg" />
+    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <header class="sticky top-0 z-50 border-b border-white/10 bg-[#0f1115]/95 backdrop-blur">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <a href="/" class="flex items-center gap-3">
-          <span class="grid size-10 place-items-center rounded-xl bg-[#ff7a00] font-black text-black">AJ</span>
-          <div class="leading-tight">
-            <div class="font-bold tracking-wide">AJ Tech Maestros</div>
-            <div class="text-xs uppercase tracking-[0.2em] text-white/50">Design. Engineer. Create.</div>
-          </div>
+  <body class="text-ink antialiased">
+    <header class="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/92 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="/" class="flex min-w-0 items-center gap-3" aria-label={`${siteConfig.name} home`}>
+          <img src="/ajtm-mark.svg" alt="" class="size-10 shrink-0 rounded-lg" width="40" height="40" />
+          <span class="min-w-0">
+            <span class="block truncate text-sm font-black tracking-tight sm:text-base">{siteConfig.name}</span>
+            <span class="hidden text-xs font-medium text-neutral-500 sm:block">{siteConfig.tagline}</span>
+          </span>
         </a>
 
-        <nav class="hidden items-center gap-6 text-sm text-white/75 lg:flex">
-          {navItems.map((item) => <a class="transition hover:text-[#ff7a00]" href={item.href}>{item.label}</a>)}
+        <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'rounded-full px-4 py-2 text-sm font-semibold transition',
+                isActive(item.href) ? 'bg-ink text-white' : 'text-neutral-600 hover:bg-neutral-100 hover:text-ink',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
-        <a href={whatsappUrl} class="rounded-full bg-[#ff7a00] px-4 py-2 text-sm font-semibold text-black transition hover:brightness-110">
-          WhatsApp
-        </a>
+        <div class="flex shrink-0 items-center gap-2">
+          <a
+            href={whatsappUrl}
+            class="hidden min-h-10 items-center justify-center gap-2 rounded-full border border-neutral-200 bg-white px-4 text-sm font-semibold text-ink shadow-sm transition hover:border-[#25d366] hover:text-[#128c3a] sm:inline-flex"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="size-2 rounded-full bg-[#25d366]"></span>
+            WhatsApp
+          </a>
+          <Button href="/request-quote/">Quote</Button>
+        </div>
       </div>
+
+      <nav class="flex gap-2 overflow-x-auto border-t border-neutral-200/80 px-4 py-2 lg:hidden" aria-label="Mobile navigation">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'shrink-0 rounded-full px-3.5 py-2 text-sm font-semibold transition',
+              isActive(item.href) ? 'bg-ink text-white' : 'bg-neutral-100 text-neutral-700',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
     </header>
 
     <main><slot /></main>
 
-    <footer class="border-t border-white/10 bg-black/20">
-      <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-3 lg:px-8">
+    <footer class="border-t border-neutral-200 bg-white">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <div class="text-lg font-bold">AJ Tech Maestros</div>
-          <p class="mt-3 max-w-md text-sm leading-6 text-white/60">{siteConfig.description}</p>
+          <a href="/" class="flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
+            <img src="/ajtm-mark.svg" alt="" class="size-10 rounded-lg" width="40" height="40" />
+            <span>
+              <span class="block font-black tracking-tight">{siteConfig.name}</span>
+              <span class="text-sm text-neutral-500">{siteConfig.location}</span>
+            </span>
+          </a>
+          <p class="mt-5 max-w-md text-sm leading-6 text-neutral-600">{siteConfig.description}</p>
+          <p class="mt-4 text-sm font-bold text-accent">{siteConfig.tagline}</p>
         </div>
+
         <div>
-          <div class="text-sm font-semibold uppercase tracking-[0.18em] text-white/50">Contact</div>
-          <div class="mt-3 space-y-2 text-sm text-white/70">
-            <div>{siteConfig.email}</div>
-            <div>{siteConfig.phone}</div>
-            <div>{siteConfig.location}</div>
+          <h2 class="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">Pages</h2>
+          <div class="mt-4 grid gap-3">
+            {navItems.map((item) => <a href={item.href} class="text-sm font-semibold text-neutral-700 hover:text-accent">{item.label}</a>)}
           </div>
         </div>
+
         <div>
-          <div class="text-sm font-semibold uppercase tracking-[0.18em] text-white/50">Company</div>
-          <div class="mt-3 space-y-2 text-sm text-white/70">
-            <div>{siteConfig.legalName}</div>
-            <div>Engineering • Design • Fabrication</div>
+          <h2 class="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">Contact</h2>
+          <div class="mt-4 grid gap-3 text-sm text-neutral-600">
+            <a class="font-semibold text-neutral-800 hover:text-accent" href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp: {siteConfig.phone}</a>
+            <a class="font-semibold text-neutral-800 hover:text-accent" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            <span>{siteConfig.location}</span>
+            <span>{siteConfig.legalName}</span>
           </div>
         </div>
       </div>
+      <div class="border-t border-neutral-200 px-4 py-5 text-center text-xs font-medium text-neutral-500">
+        &copy; {new Date().getFullYear()} {siteConfig.legalName}. Engineering, design, prototyping and digital fabrication.
+      </div>
     </footer>
+
+    <a
+      href={whatsappUrl}
+      class="fixed bottom-4 right-4 z-50 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25d366] px-4 text-sm font-black text-white shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#1ebe57] sm:bottom-6 sm:right-6"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Contact AJ Tech Maestros on WhatsApp"
+    >
+      <span class="grid size-7 place-items-center rounded-full bg-white/20 text-xs">WA</span>
+      <span>WhatsApp</span>
+    </a>
   </body>
 </html>
