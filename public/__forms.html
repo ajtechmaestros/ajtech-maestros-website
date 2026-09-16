@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8" /><title>Netlify Forms</title></head>
+  <body>
+    <form name="quote-request" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+      <input type="hidden" name="form-name" value="quote-request" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <select name="inquiry-type">
+        <option value="3D printing quote">3D printing quote</option>
+        <option value="CAD design request">CAD design request</option>
+        <option value="Product prototyping">Product prototyping</option>
+        <option value="Replacement part / reverse engineering">Replacement part / reverse engineering</option>
+        <option value="Custom product / artwork">Custom product / artwork</option>
+        <option value="Engineering support">Engineering support</option>
+        <option value="Technical training">Technical training</option>
+        <option value="Partnership / project inquiry">Partnership / project inquiry</option>
+        <option value="General inquiry">General inquiry</option>
+      </select>
+      <textarea name="message"></textarea>
+      <input type="radio" name="has-model" value="yes" />
+      <input type="radio" name="has-model" value="no" />
+      <input type="radio" name="has-model" value="not-applicable" />
+      <input type="file" name="model-file" />
+      <input type="text" name="material-color" />
+      <input type="number" name="quantity" />
+      <input type="date" name="deadline" />
+      <select name="preferred-contact"><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="phone">Phone call</option></select>
+    </form>
+  </body>
+</html>
