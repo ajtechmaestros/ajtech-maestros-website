@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../site.config';
+---
+
+<Layout title="About | AJ Tech Maestros" description="About AJ Tech Maestros and ABE & JACK TECH MAESTROS LTD.">
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">About</p>
+    <h1 class="mt-3 max-w-4xl text-5xl font-black">A practical engineering company built to turn ideas into working products.</h1>
+    <div class="mt-10 grid gap-8 lg:grid-cols-2">
+      <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+        <h2 class="text-2xl font-bold">AJ Tech Maestros</h2>
+        <p class="mt-4 leading-8 text-white/60">AJ Tech Maestros is the public-facing brand of {siteConfig.legalName}. The company brings together product design, CAD, rapid prototyping, digital fabrication and practical engineering support under one platform.</p>
+      </div>
+      <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+        <h2 class="text-2xl font-bold">Our direction</h2>
+        <p class="mt-4 leading-8 text-white/60">We are starting with design and fabrication services, while building toward broader product-development capability and future technology ventures, including medical and assistive technology where appropriate.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
