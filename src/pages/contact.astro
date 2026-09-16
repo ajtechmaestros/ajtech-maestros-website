@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig, whatsappUrl } from '../site.config';
+---
+
+<Layout title="Contact | AJ Tech Maestros" description="Contact AJ Tech Maestros for engineering, CAD, prototyping and 3D printing inquiries.">
+  <section class="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">Contact</p>
+    <h1 class="mt-3 text-5xl font-black">Tell us what you want to build.</h1>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+        <div class="text-sm uppercase tracking-[0.18em] text-white/45">Email</div>
+        <a class="mt-2 block text-xl font-bold" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      </div>
+      <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+        <div class="text-sm uppercase tracking-[0.18em] text-white/45">Phone / WhatsApp</div>
+        <a class="mt-2 block text-xl font-bold" href={whatsappUrl}>{siteConfig.phone}</a>
+      </div>
+    </div>
+    <div class="mt-6 rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+      <div class="text-sm uppercase tracking-[0.18em] text-white/45">Location</div>
+      <div class="mt-2 text-xl font-bold">{siteConfig.location}</div>
+    </div>
+  </section>
+</Layout>
