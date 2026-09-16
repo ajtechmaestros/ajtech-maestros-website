@@ -1,0 +1,19 @@
+---
+import Button from '../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+import { whatsappUrl } from '../site.config';
+---
+
+<Layout title="Thank You | AJ Tech Maestros" description="Thanks for contacting AJ Tech Maestros. We have received your inquiry and will respond with the next step.">
+  <section class="px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-black uppercase tracking-[0.2em] text-accent">Inquiry received</p>
+      <h1 class="mt-4 text-4xl font-black tracking-tight text-ink sm:text-6xl">Thank you.</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-base leading-8 text-neutral-600 sm:text-lg">Your message has been sent. AJ Tech Maestros will review the details and respond with the right next step.</p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <Button href="/" variant="secondary" size="lg">Back Home</Button>
+        <Button href={whatsappUrl} target="_blank" rel="noreferrer" size="lg">Message on WhatsApp</Button>
+      </div>
+    </div>
+  </section>
+</Layout>
