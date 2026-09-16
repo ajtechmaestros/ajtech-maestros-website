@@ -1,24 +1,38 @@
 ---
+import CTASection from '../components/CTASection.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Products | AJ Tech Maestros" description="Browse products and made-to-order items from AJ Tech Maestros.">
-  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">Products</p>
-    <h1 class="mt-3 max-w-4xl text-5xl font-black">Useful products, customized items and engineered prints.</h1>
-    <p class="mt-5 max-w-3xl text-lg leading-8 text-white/60">This catalogue will carry proven products rather than random prints. We are prioritizing practical desk products, customized gifts, replacement parts and design-led items that customers will actually pay for.</p>
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
-      {[
-        ['Customized Products', 'Names, gifts, branded pieces and personalized items made to order.'],
-        ['Functional Prints', 'Holders, organizers, fixtures, replacement parts and everyday problem-solvers.'],
-        ['Prototype Products', 'Early-stage products and short runs developed with customers before scaling.'],
-      ].map(([title, copy]) => (
-        <article class="rounded-3xl border border-white/10 bg-white/[0.03] p-7">
-          <div class="mb-5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#ff7a00]/25 to-white/5"></div>
-          <h2 class="text-2xl font-bold">{title}</h2>
-          <p class="mt-3 leading-7 text-white/60">{copy}</p>
-        </article>
-      ))}
+<Layout title="Products | AJ Tech Maestros" description="Browse product categories and made-to-order items from AJ Tech Maestros.">
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-black uppercase tracking-[0.22em] text-accent">Products</p>
+      <h1 class="mt-5 max-w-5xl text-4xl font-black tracking-tight text-ink sm:text-5xl lg:text-6xl">Useful products, customized items and engineered prints.</h1>
+      <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-600 sm:text-xl">The catalogue will prioritize practical, repeatable products rather than random prints. Initial categories are focused on customized items, functional prints and prototype-led products.</p>
     </div>
   </section>
+
+  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <SectionHeader eyebrow="Product categories" title="A catalogue built around products people actually need" description="Final individual products, prices and product photography will be added as the launch catalogue is selected." />
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {[
+          ['Customized Products', 'Names, gifts, branded pieces, trophies, display items and personalized products made to order.'],
+          ['Functional Prints', 'Holders, organizers, fixtures, replacement parts, enclosures and everyday problem-solvers.'],
+          ['Prototype Products', 'Early-stage products and short runs developed with customers before larger production.'],
+        ].map(([title, copy], index) => (
+          <article class="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+            <div class="relative aspect-[4/3] bg-gradient-to-br from-accent/20 via-white to-neutral-200">
+              <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,9,11,.05)_1px,transparent_1px),linear-gradient(0deg,rgba(9,9,11,.05)_1px,transparent_1px)] bg-[size:28px_28px]"></div>
+              <div class="absolute left-6 top-6 grid size-12 place-items-center rounded-xl bg-ink text-sm font-black text-white">0{index + 1}</div>
+            </div>
+            <div class="p-6"><h2 class="text-2xl font-black">{title}</h2><p class="mt-3 leading-7 text-neutral-600">{copy}</p></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection eyebrow="Need something custom?" title="You do not need to wait for the catalogue." description="If you already know what you need, send the dimensions, reference, sketch or file and we can review it as a custom project." primaryHref="/request-quote/" primaryLabel="Request a Quote" secondaryHref="/services/" secondaryLabel="View Services" tone="light" />
 </Layout>
