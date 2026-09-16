@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Services | AJ Tech Maestros" description="CAD design, product development, rapid prototyping, 3D printing and engineering services from AJ Tech Maestros.">
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">Services</p>
+    <h1 class="mt-3 max-w-4xl text-5xl font-black">Engineering support from first sketch to physical part.</h1>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {[
+        ['Product Design & CAD', 'Parametric CAD modelling, assemblies, concept development, design refinement and production drawings.'],
+        ['Rapid Prototyping', 'Prototype parts to validate fit, ergonomics, mechanisms and design decisions before production.'],
+        ['3D Printing & Digital Fabrication', 'Custom prints, replacement parts, functional prototypes, small-batch products and customized items.'],
+        ['Design for Manufacture', 'Part simplification, tolerance review, orientation, materials and process choices for more reliable production.'],
+        ['Engineering Projects', 'Structured technical support for product development, fixtures, enclosures, mechanisms and fabrication projects.'],
+        ['Training & Technical Workshops', 'Practical sessions in CAD, additive manufacturing and digital fabrication as this service line develops.'],
+      ].map(([title, copy]) => (
+        <article class="rounded-3xl border border-white/10 bg-white/[0.03] p-7">
+          <h2 class="text-2xl font-bold">{title}</h2>
+          <p class="mt-3 leading-7 text-white/60">{copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
