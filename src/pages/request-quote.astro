@@ -1,25 +1,81 @@
 ---
+import Button from '../components/Button.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { siteConfig, whatsappUrl } from '../site.config';
+import { whatsappUrl } from '../site.config';
+
+const fieldClass = 'min-h-12 rounded-lg border border-neutral-300 bg-white px-4 text-base font-medium outline-none transition focus:border-accent focus:ring-4 focus:ring-accent/15';
+const textareaClass = 'min-h-36 rounded-lg border border-neutral-300 bg-white px-4 py-3 text-base font-medium outline-none transition focus:border-accent focus:ring-4 focus:ring-accent/15';
+const inquiryTypes = [
+  '3D printing quote',
+  'CAD design request',
+  'Product prototyping',
+  'Replacement part / reverse engineering',
+  'Custom product / artwork',
+  'Engineering support',
+  'Technical training',
+  'Partnership / project inquiry',
+  'General inquiry',
+];
 ---
 
-<Layout title="Request a Quote | AJ Tech Maestros" description="Request a quote for CAD, engineering, rapid prototyping or 3D printing services.">
-  <section class="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
-    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">Request a Quote</p>
-    <h1 class="mt-3 text-5xl font-black">Send the project details first. Print second.</h1>
-    <p class="mt-5 max-w-3xl text-lg leading-8 text-white/60">For the fastest estimate, include what you need made, quantity, dimensions, material preference, deadline and any STL, STEP, CAD, drawing or reference image you already have.</p>
+<Layout title="Request a Quote | AJ Tech Maestros" description="Request a quote for CAD design, engineering, rapid prototyping, 3D printing, custom products or technical training from AJ Tech Maestros.">
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+      <div>
+        <SectionHeader eyebrow="Request Quote" title="Send the project details first. Build second." description="Tell us what you want to make, repair, design, prototype or learn. We will review the requirement and respond with the most practical next step." />
+        <div class="mt-8 rounded-2xl border border-neutral-200 bg-panel p-5">
+          <h2 class="text-lg font-black tracking-tight">Helpful details to include</h2>
+          <ul class="mt-4 grid gap-3 text-sm leading-6 text-neutral-700">
+            <li class="flex gap-2"><span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span><span>Dimensions, quantity, material, finish, colour and deadline where relevant.</span></li>
+            <li class="flex gap-2"><span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span><span>Attach STL, STEP, 3MF, OBJ, PDF, drawing, image or other reference files if you have them.</span></li>
+            <li class="flex gap-2"><span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span><span>For training: audience, skill level, location, preferred format and goals.</span></li>
+          </ul>
+          <a href={whatsappUrl} target="_blank" rel="noreferrer" class="mt-6 inline-flex min-h-11 items-center rounded-full bg-[#25d366] px-5 text-sm font-black text-white transition hover:bg-[#1ebe57]">Start on WhatsApp</a>
+        </div>
+      </div>
 
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      <a href={whatsappUrl} class="rounded-3xl bg-[#ff7a00] p-8 text-black">
-        <div class="text-sm font-bold uppercase tracking-[0.18em]">Fastest</div>
-        <div class="mt-3 text-3xl font-black">Request via WhatsApp</div>
-        <p class="mt-3 text-black/70">Best for photos, sketches, dimensions and quick clarification.</p>
-      </a>
-      <a href={`mailto:${siteConfig.email}?subject=AJ Tech Maestros Quote Request`} class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
-        <div class="text-sm font-bold uppercase tracking-[0.18em] text-white/45">Detailed projects</div>
-        <div class="mt-3 text-3xl font-black">Request by Email</div>
-        <p class="mt-3 text-white/60">Best for CAD files, specifications, drawings and formal project briefs.</p>
-      </a>
+      <form
+        name="quote-request"
+        method="POST"
+        action="/thank-you/"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        enctype="multipart/form-data"
+        accept-charset="UTF-8"
+        class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-xl shadow-neutral-950/[0.06] sm:p-8"
+      >
+        <input type="hidden" name="form-name" value="quote-request" />
+        <p class="hidden"><label>Do not fill this out if you are human: <input name="bot-field" /></label></p>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Name<input class={fieldClass} type="text" name="name" autocomplete="name" required /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Phone / WhatsApp<input class={fieldClass} type="tel" name="phone" autocomplete="tel" required /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Email<input class={fieldClass} type="email" name="email" autocomplete="email" /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Inquiry Type<select class={fieldClass} name="inquiry-type" required><option value="">Select inquiry type</option>{inquiryTypes.map((type) => <option value={type}>{type}</option>)}</select></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800 sm:col-span-2">Message / project description<textarea class={textareaClass} name="message" required></textarea></label>
+
+          <fieldset class="grid gap-3 rounded-lg border border-neutral-200 bg-panel p-4 sm:col-span-2">
+            <legend class="px-1 text-sm font-bold text-neutral-800">Do you have a design/model already?</legend>
+            <div class="flex flex-wrap gap-3">
+              <label class="inline-flex min-h-11 items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 text-sm font-bold"><input type="radio" name="has-model" value="yes" /> Yes</label>
+              <label class="inline-flex min-h-11 items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 text-sm font-bold"><input type="radio" name="has-model" value="no" /> No</label>
+              <label class="inline-flex min-h-11 items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 text-sm font-bold"><input type="radio" name="has-model" value="not-applicable" /> Not applicable</label>
+            </div>
+          </fieldset>
+
+          <label class="grid gap-2 text-sm font-bold text-neutral-800 sm:col-span-2">File upload<input class="rounded-lg border border-dashed border-neutral-300 bg-panel px-4 py-4 text-sm font-medium text-neutral-700 file:mr-4 file:rounded-full file:border-0 file:bg-ink file:px-4 file:py-2 file:text-sm file:font-bold file:text-white" type="file" name="model-file" accept=".stl,.obj,.step,.stp,.3mf,.zip,.pdf,.png,.jpg,.jpeg" /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Preferred material/color<input class={fieldClass} type="text" name="material-color" placeholder="PLA, PETG, black, white..." /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Quantity<input class={fieldClass} type="number" name="quantity" min="1" /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Deadline<input class={fieldClass} type="date" name="deadline" /></label>
+          <label class="grid gap-2 text-sm font-bold text-neutral-800">Preferred contact method<select class={fieldClass} name="preferred-contact"><option value="">Select preference</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="phone">Phone call</option></select></label>
+        </div>
+
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Button type="submit" size="lg">Submit Inquiry</Button>
+          <p class="text-sm leading-6 text-neutral-500">Submissions are configured for Netlify Forms after deployment.</p>
+        </div>
+      </form>
     </div>
   </section>
 </Layout>
