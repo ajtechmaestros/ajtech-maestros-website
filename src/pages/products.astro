@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Products | AJ Tech Maestros" description="Browse products and made-to-order items from AJ Tech Maestros.">
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">Products</p>
+    <h1 class="mt-3 max-w-4xl text-5xl font-black">Useful products, customized items and engineered prints.</h1>
+    <p class="mt-5 max-w-3xl text-lg leading-8 text-white/60">This catalogue will carry proven products rather than random prints. We are prioritizing practical desk products, customized gifts, replacement parts and design-led items that customers will actually pay for.</p>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {[
+        ['Customized Products', 'Names, gifts, branded pieces and personalized items made to order.'],
+        ['Functional Prints', 'Holders, organizers, fixtures, replacement parts and everyday problem-solvers.'],
+        ['Prototype Products', 'Early-stage products and short runs developed with customers before scaling.'],
+      ].map(([title, copy]) => (
+        <article class="rounded-3xl border border-white/10 bg-white/[0.03] p-7">
+          <div class="mb-5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#ff7a00]/25 to-white/5"></div>
+          <h2 class="text-2xl font-bold">{title}</h2>
+          <p class="mt-3 leading-7 text-white/60">{copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
