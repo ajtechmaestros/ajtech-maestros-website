@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig, whatsappUrl } from '../site.config';
+---
+
+<Layout title="Request a Quote | AJ Tech Maestros" description="Request a quote for CAD, engineering, rapid prototyping or 3D printing services.">
+  <section class="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff7a00]">Request a Quote</p>
+    <h1 class="mt-3 text-5xl font-black">Send the project details first. Print second.</h1>
+    <p class="mt-5 max-w-3xl text-lg leading-8 text-white/60">For the fastest estimate, include what you need made, quantity, dimensions, material preference, deadline and any STL, STEP, CAD, drawing or reference image you already have.</p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <a href={whatsappUrl} class="rounded-3xl bg-[#ff7a00] p-8 text-black">
+        <div class="text-sm font-bold uppercase tracking-[0.18em]">Fastest</div>
+        <div class="mt-3 text-3xl font-black">Request via WhatsApp</div>
+        <p class="mt-3 text-black/70">Best for photos, sketches, dimensions and quick clarification.</p>
+      </a>
+      <a href={`mailto:${siteConfig.email}?subject=AJ Tech Maestros Quote Request`} class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+        <div class="text-sm font-bold uppercase tracking-[0.18em] text-white/45">Detailed projects</div>
+        <div class="mt-3 text-3xl font-black">Request by Email</div>
+        <p class="mt-3 text-white/60">Best for CAD files, specifications, drawings and formal project briefs.</p>
+      </a>
+    </div>
+  </section>
+</Layout>
