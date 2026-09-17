@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AJ Tech Maestros mark">
+  <rect width="64" height="64" rx="14" fill="#09090b"/>
+  <path d="M12 45 24.5 17h7L44 45h-7.7l-2.3-5.7H22l-2.3 5.7H12Zm12.4-12h7.2L28 24l-3.6 9Z" fill="#fff"/>
+  <path d="M42 17h10v20c0 7.2-4.1 11-11.3 11-2.2 0-4.2-.4-5.9-1.1l2.3-6.2c.9.4 1.9.6 3 .6 2.8 0 4.2-1.5 4.2-4.6V23.5H42V17Z" fill="#f97316"/>
+</svg>

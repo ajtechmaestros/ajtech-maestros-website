@@ -1,0 +1,71 @@
+---
+import CTASection from '../components/CTASection.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  { code: '3DP', title: '3D printing from ready files', description: 'Send STL, OBJ, STEP, 3MF, PDF or similar files for review, quotation and production.' },
+  { code: 'CAD', title: 'CAD design and 3D modelling', description: 'Turn sketches, measurements, images or early concepts into manufacturable 3D models.' },
+  { code: 'PT', title: 'Product prototyping', description: 'Create fit checks, enclosures, functional samples, mockups and iteration-ready prototypes.' },
+  { code: 'RP', title: 'Replacement parts & reverse engineering', description: 'Measure, model and reproduce practical parts when a printed or fabricated replacement is technically suitable.' },
+  { code: 'ART', title: 'Custom products & branded items', description: 'Design and produce display pieces, branded items, decor, trophies, gifts and personalized products.' },
+  { code: 'BCH', title: 'Small-batch production', description: 'Produce short runs of parts before tooling, outsourcing or committing to larger manufacturing volumes.' },
+  { code: 'DFM', title: 'Design for manufacture', description: 'Refine geometry, tolerances, material choices, assembly features and production strategy for better outcomes.' },
+  { code: 'ENG', title: 'Engineering project support', description: 'Structured technical support for mechanisms, fixtures, enclosures, assemblies and product-development projects.' },
+];
+
+const training = [
+  'Introduction to 3D printing',
+  'CAD design and 3D modelling',
+  'Slicing and print preparation',
+  'Printer setup and operation',
+  'Troubleshooting failed prints',
+  'Design for additive manufacturing',
+  'Project-based prototyping',
+];
+---
+
+<Layout title="Services | AJ Tech Maestros" description="CAD design, product development, rapid prototyping, 3D printing, digital fabrication, engineering support and technical training from AJ Tech Maestros.">
+  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-black uppercase tracking-[0.22em] text-accent">Services</p>
+      <h1 class="mt-5 max-w-5xl text-4xl font-black tracking-tight text-ink sm:text-5xl lg:text-6xl">Engineering support from first sketch to finished part.</h1>
+      <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-600 sm:text-xl">The commercial capabilities developed under Abe3D now sit inside a broader AJ Tech Maestros engineering workflow covering design, prototyping, fabrication and technical support.</p>
+    </div>
+  </section>
+
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <SectionHeader eyebrow="Core services" title="Design, prototype, fabricate and refine" description="Choose a simple print from an existing file or work with us from concept through CAD, prototyping and small-batch production." />
+      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => <ServiceCard {...service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
+      <SectionHeader eyebrow="Technical training" title="Practical digital fabrication training" description="The Abe3D Academy material is retained as a developing training service for individuals, teams, schools and institutions." />
+      <div class="grid gap-3 sm:grid-cols-2">
+        {training.map((item) => <div class="rounded-2xl border border-neutral-200 bg-white p-5 text-sm font-semibold text-neutral-700 shadow-sm"><span class="mr-2 text-accent">●</span>{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <SectionHeader eyebrow="Process" title="A clear route from inquiry to delivery" description="We review the technical requirement before production so cost, timeline and practical constraints are clear." />
+      <div class="mt-10 grid gap-4 md:grid-cols-4">
+        {[
+          ['01', 'Send your file, sketch, image or idea'],
+          ['02', 'We review the design and recommend the right approach'],
+          ['03', 'We send a quote and expected timeline'],
+          ['04', 'We design, print, fabricate, finish and deliver'],
+        ].map(([n, text]) => <article class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"><p class="text-sm font-black text-accent">{n}</p><p class="mt-3 font-bold text-ink">{text}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <CTASection eyebrow="Have a requirement?" title="Send the design, file, dimensions or problem first." description="We will review the best engineering or fabrication path before committing you to a process." primaryHref="/request-quote/" primaryLabel="Request a Quote" secondaryHref="/projects/" secondaryLabel="View Projects" />
+</Layout>
