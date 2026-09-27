@@ -24,7 +24,7 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f1115" />
-    <link rel="icon" type="image/png" href="images/AJTM.png.png" />
+    <link rel="icon" type="image/svg+xml" href="/ajtm-mark.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -32,12 +32,12 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
     <header class="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/92 backdrop-blur">
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" class="flex min-w-0 items-center gap-3" aria-label={`${siteConfig.name} home`}>
-          <img
+      <img
   src="images/AJTM.png.png"
   alt="AJ Tech Maestros"
-  class="size-10 shrink-0 rounded-lg object-contain"
-  width="40"
-  height="40"
+  class="size-12 shrink-0 rounded-xl bg-ink object-contain p-1.5"
+  width="70"
+  height="70"
 />
           <span class="min-w-0">
             <span class="block truncate text-sm font-black tracking-tight sm:text-base">{siteConfig.name}</span>
@@ -96,10 +96,10 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
       <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <a href="/" class="flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
-            <img
+        <img
   src="images/AJTM.png.png"
   alt="AJ Tech Maestros"
-  class="size-10 rounded-lg object-contain"
+  class="size-10 shrink-0 rounded-xl bg-ink object-contain p-1.5"
   width="40"
   height="40"
 />
