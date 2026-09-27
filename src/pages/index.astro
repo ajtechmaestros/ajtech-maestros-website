@@ -1,9 +1,11 @@
 ---
+
 import Button from '../components/Button.astro';
 import CTASection from '../components/CTASection.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import Layout from '../layouts/Layout.astro';
+
 
 const services = [
   { code: 'CAD', title: 'Product Design & CAD', description: 'Parametric modelling, assemblies, design refinement, reverse engineering and production drawings.' },
@@ -25,13 +27,17 @@ const services = [
         <p class="text-sm font-black uppercase tracking-[0.24em] text-accent">Design • Engineering • Fabrication</p>
         <h1 class="mt-5 max-w-4xl text-5xl font-black tracking-tight sm:text-6xl lg:text-7xl">Turn ideas into engineered products.</h1>
         <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-300 sm:text-xl">
-          AJ Tech Maestros helps individuals, startups, teams and organizations move from concept to physical product through CAD design, rapid prototyping, 3D printing and practical engineering support.
+          AJ Tech Maestros helps individuals teams and organizations move from concept to physical product through CAD design, rapid prototyping, 3D printing and practical engineering support.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button href="/request-quote/" size="lg">Request a Quote</Button>
           <Button href="/services/" variant="light" size="lg">Explore Services</Button>
         </div>
       </div>
+
+
+          
+        
 
       <div class="rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-2xl shadow-black/25 backdrop-blur">
         <img src="/ajtm-mark.svg" alt="AJ Tech Maestros" class="size-20 rounded-2xl" />
