@@ -27,11 +27,18 @@ const services = [
         <p class="text-sm font-black uppercase tracking-[0.24em] text-accent">Design • Engineering • Fabrication</p>
         <h1 class="mt-5 max-w-4xl text-5xl font-black tracking-tight sm:text-6xl lg:text-7xl">Turn ideas into engineered products.</h1>
         <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-300 sm:text-xl">
-          AJ Tech Maestros helps individuals teams and organizations move from concept to physical product through CAD design, rapid prototyping, 3D printing and practical engineering support.
+          AJ Tech Maestros helps individuals ,teams and organizations move from concept to physical product through CAD design, rapid prototyping, 3D printing and practical engineering support.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button href="/request-quote/" size="lg">Request a Quote</Button>
-          <Button href="/services/" variant="light" size="lg">Explore Services</Button>
+          <Button
+  href="/services/"
+  variant="light"
+  size="lg"
+  class="!text-neutral-900"
+>
+  Explore Services
+</Button>
         </div>
       </div>
 
@@ -39,17 +46,34 @@ const services = [
           
         
 
-      <div class="rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-2xl shadow-black/25 backdrop-blur">
-        <img src="/ajtm-mark.svg" alt="AJ Tech Maestros" class="size-20 rounded-2xl" />
-        <h2 class="mt-6 text-3xl font-black tracking-tight">Design. Engineer. Create.</h2>
-        <p class="mt-4 leading-7 text-neutral-300">Built from the foundation of Abe3D, the company now combines digital fabrication with broader engineering and product-development services.</p>
-        <div class="mt-7 grid grid-cols-2 gap-3 text-sm font-bold">
-          <div class="rounded-2xl bg-white/10 p-4">CAD & Product Design</div>
-          <div class="rounded-2xl bg-white/10 p-4">3D Printing</div>
-          <div class="rounded-2xl bg-white/10 p-4">Prototyping</div>
-          <div class="rounded-2xl bg-white/10 p-4">Engineering Support</div>
-        </div>
+      <div class="relative mx-auto w-full max-w-xl">
+  <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] shadow-2xl shadow-black/30">
+    <img
+      src="/images/A1_mini.jpeg"
+      alt="Bambu Lab A1 Mini 3D printer"
+      class="h-[420px] w-full object-cover"
+    />
+  </div>
+
+  <div class="absolute -bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-[#1b1d24]/95 p-5 shadow-xl backdrop-blur">
+    <div class="flex items-start gap-4">
+      <div class="mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl bg-ink p-1.5">
+  <img
+    src="images/AJTM.png.png"
+    alt="AJ Tech Maestros"
+    class="size-full object-contain"
+  />
+</div>
+
+      <div>
+        <p class="text-sm font-bold text-white">From digital idea to physical part</p>
+        <p class="mt-1 text-sm leading-6 text-neutral-400">
+          We design it, prototype it and make it real.
+        </p>
       </div>
+    </div>
+  </div>
+</div>
     </div>
   </section>
 
