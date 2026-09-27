@@ -24,7 +24,7 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f1115" />
-    <link rel="icon" type="image/svg+xml" href="/ajtm-mark.svg" />
+    <link rel="icon" type="image/png" href="images/AJTM.png.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -32,7 +32,13 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
     <header class="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/92 backdrop-blur">
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" class="flex min-w-0 items-center gap-3" aria-label={`${siteConfig.name} home`}>
-          <img src="/ajtm-mark.svg" alt="" class="size-10 shrink-0 rounded-lg" width="40" height="40" />
+          <img
+  src="images/AJTM.png.png"
+  alt="AJ Tech Maestros"
+  class="size-10 shrink-0 rounded-lg object-contain"
+  width="40"
+  height="40"
+/>
           <span class="min-w-0">
             <span class="block truncate text-sm font-black tracking-tight sm:text-base">{siteConfig.name}</span>
             <span class="hidden text-xs font-medium text-neutral-500 sm:block">{siteConfig.tagline}</span>
@@ -45,7 +51,9 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
               href={item.href}
               class:list={[
                 'rounded-full px-4 py-2 text-sm font-semibold transition',
-                isActive(item.href) ? 'bg-ink text-white' : 'text-neutral-600 hover:bg-neutral-100 hover:text-ink',
+                
+
+                isActive(item.href) ?   'text-accent':  'text-neutral-600 hover:text-ink',
               ]}
             >
               {item.label}
@@ -88,7 +96,13 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
       <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <a href="/" class="flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
-            <img src="/ajtm-mark.svg" alt="" class="size-10 rounded-lg" width="40" height="40" />
+            <img
+  src="images/AJTM.png.png"
+  alt="AJ Tech Maestros"
+  class="size-10 rounded-lg object-contain"
+  width="40"
+  height="40"
+/>
             <span>
               <span class="block font-black tracking-tight">{siteConfig.name}</span>
               <span class="text-sm text-neutral-500">{siteConfig.location}</span>
