@@ -1,5 +1,4 @@
 ---
-import Card from '../components/Card.astro';
 import CTASection from '../components/CTASection.astro';
 import PageHero from '../components/PageHero.astro';
 import Photo from '../components/Photo.astro';
@@ -17,16 +16,19 @@ const products = [
 ---
 
 <Layout title="Products | AJ Tech Maestros" description="Made-to-order replacement parts, branded items, trophies, décor, gifts and functional prototypes from AJ Tech Maestros.">
-  <PageHero label="Products" title="Made to order, not off a shelf." description="We don't stock a catalog — we print what's needed. These are the categories we produce most; tell us what you're after and we'll build it." />
+  <PageHero title="Made to order, not off a shelf." description="We don't stock a catalog — we print what's needed. These are the categories we produce most; tell us what you're after and we'll build it." />
 
   <section class="pb-16">
-    <hr class="rule mb-7" />
     <div class="card-grid">
       {products.map((p, i) => (
-        <Card kicker={String(i + 1).padStart(2, '0')} title={p.title}>
-          <Photo slot="photo" class="card-photo" src={p.image} alt={p.alt} ratio="4 / 3" framed={false} />
-          {p.body}
-        </Card>
+        <div class="card card-lift overflow-hidden p-0">
+          <Photo class="rounded-none" src={p.image} alt={p.alt} ratio="4 / 3" shadow={false} />
+          <div class="p-5">
+            <div class="card-kicker mb-2">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="card-title text-[16px]">{p.title}</h3>
+            <p class="card-body">{p.body}</p>
+          </div>
+        </div>
       ))}
     </div>
   </section>
