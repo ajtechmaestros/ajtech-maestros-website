@@ -1,38 +1,41 @@
 ---
+import Card from '../components/Card.astro';
 import CTASection from '../components/CTASection.astro';
-import SectionHeader from '../components/SectionHeader.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
 import Layout from '../layouts/Layout.astro';
+import { whatsappMessages } from '../site.config';
+
+const products = [
+  { image: '/images/prod-01.webp', alt: 'Replacement part', title: 'Replacement Parts', body: "The bracket, knob or clip you can't buy anymore — measured and remade." },
+  { image: '/images/prod-02.webp', alt: 'Branded promotional item', title: 'Branded & Promotional Items', body: 'Keychains, badges and giveaways in your shape, your logo.' },
+  { image: undefined, alt: 'Trophy or award', title: 'Trophies & Awards', body: 'One-off recognition pieces, designed around the occasion.' },
+  { image: '/images/prod-04.webp', alt: 'Décor and display piece', title: 'Décor & Display Pieces', body: 'Signage, stands and display objects for home, office or event.' },
+  { image: '/images/prod-05.webp', alt: 'Personalized gift item', title: 'Gifts', body: 'Personalized, printed, yours — from a name to a full custom form.' },
+  { image: '/images/prod-06.webp', alt: 'Functional prototype', title: 'Functional Prototypes', body: 'Working samples for products still finding their final shape.' },
+];
 ---
 
-<Layout title="Products | AJ Tech Maestros" description="Browse product categories and made-to-order items from AJ Tech Maestros.">
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <p class="text-sm font-black uppercase tracking-[0.22em] text-accent">Products</p>
-      <h1 class="mt-5 max-w-5xl text-4xl font-black tracking-tight text-ink sm:text-5xl lg:text-6xl">Useful products, customized items and engineered prints.</h1>
-      <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-600 sm:text-xl">The catalogue will prioritize practical, repeatable products rather than random prints. Initial categories are focused on customized items, functional prints and prototype-led products.</p>
+<Layout title="Products | AJ Tech Maestros" description="Made-to-order replacement parts, branded items, trophies, décor, gifts and functional prototypes from AJ Tech Maestros.">
+  <PageHero label="Products" title="Made to order, not off a shelf." description="We don't stock a catalog — we print what's needed. These are the categories we produce most; tell us what you're after and we'll build it." />
+
+  <section class="pb-16">
+    <hr class="rule mb-7" />
+    <div class="card-grid">
+      {products.map((p, i) => (
+        <Card kicker={String(i + 1).padStart(2, '0')} title={p.title}>
+          <Photo slot="photo" class="card-photo" src={p.image} alt={p.alt} ratio="4 / 3" framed={false} />
+          {p.body}
+        </Card>
+      ))}
     </div>
   </section>
 
-  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <SectionHeader eyebrow="Product categories" title="A catalogue built around products people actually need" description="Final individual products, prices and product photography will be added as the launch catalogue is selected." />
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {[
-          ['Customized Products', 'Names, gifts, branded pieces, trophies, display items and personalized products made to order.'],
-          ['Functional Prints', 'Holders, organizers, fixtures, replacement parts, enclosures and everyday problem-solvers.'],
-          ['Prototype Products', 'Early-stage products and short runs developed with customers before larger production.'],
-        ].map(([title, copy], index) => (
-          <article class="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-            <div class="relative aspect-[4/3] bg-gradient-to-br from-accent/20 via-white to-neutral-200">
-              <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,9,11,.05)_1px,transparent_1px),linear-gradient(0deg,rgba(9,9,11,.05)_1px,transparent_1px)] bg-[size:28px_28px]"></div>
-              <div class="absolute left-6 top-6 grid size-12 place-items-center rounded-xl bg-ink text-sm font-black text-white">0{index + 1}</div>
-            </div>
-            <div class="p-6"><h2 class="text-2xl font-black">{title}</h2><p class="mt-3 leading-7 text-neutral-600">{copy}</p></div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <CTASection eyebrow="Need something custom?" title="You do not need to wait for the catalogue." description="If you already know what you need, send the dimensions, reference, sketch or file and we can review it as a custom project." primaryHref="/request-quote/" primaryLabel="Request a Quote" secondaryHref="/services/" secondaryLabel="View Services" tone="light" />
+  <CTASection
+    title="Have something specific in mind?"
+    description="Send a photo, a sketch or just a description. We'll tell you if it's a print, a prototype, or something bigger."
+    whatsappMessage={whatsappMessages.product}
+    secondaryHref="/contact/"
+    secondaryLabel="Request a Quote"
+  />
 </Layout>
