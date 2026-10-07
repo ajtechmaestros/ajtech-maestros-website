@@ -1,20 +1,18 @@
 ---
-import Corners from './Corners.astro';
-
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'outline' | 'outline-light';
+  size?: 'md' | 'sm';
   type?: 'button' | 'submit' | 'reset';
   block?: boolean;
   class?: string;
 }
-const { href, variant = 'primary', type = 'button', block = false, class: className = '' } = Astro.props;
-const primary = variant === 'primary';
+const { href, variant = 'primary', size = 'md', type = 'button', block = false, class: className = '' } = Astro.props;
 const external = href?.startsWith('http');
-const classes = ['btn', `btn-${variant}`, primary && 'blueprint', block && 'btn-block', className];
+const classes = ['btn', `btn-${variant}`, size === 'sm' && 'btn-sm', block && 'btn-block', className];
 ---
 {href ? (
-  <a href={href} class:list={classes} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{primary && <Corners />}<slot /></a>
+  <a href={href} class:list={classes} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}><slot /></a>
 ) : (
-  <button type={type} class:list={classes}>{primary && <Corners />}<slot /></button>
+  <button type={type} class:list={classes}><slot /></button>
 )}

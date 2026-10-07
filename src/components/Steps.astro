@@ -1,13 +1,13 @@
 ---
-interface Props { steps: { title?: string; body: string }[]; }
-const { steps } = Astro.props;
+interface Props { steps: { title?: string; body: string }[]; large?: boolean; }
+const { steps, large = false } = Astro.props;
 ---
-<div class="steps">
+<div class="steps" style={large ? '--step-min:240px;' : undefined}>
   {steps.map((step, i) => (
     <div>
-      <div class="step-num">{String(i + 1).padStart(2, '0')}</div>
-      {step.title && <div class="step-title">{step.title}</div>}
-      <p class:list={['step-body', !step.title && 'mt-2']}>{step.body}</p>
+      <div class:list={['step-num', large && 'text-[34px]']}>{String(i + 1).padStart(2, '0')}</div>
+      {step.title && <div class="mt-2.5 mb-1.5 text-[17px] font-bold">{step.title}</div>}
+      <p class:list={['m-0', step.title ? 'text-[15px] leading-[1.6] text-muted' : 'mt-2 text-[14px] text-[rgba(21,23,26,0.72)]']}>{step.body}</p>
     </div>
   ))}
 </div>

@@ -3,10 +3,15 @@ import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 import CTASection from '../components/CTASection.astro';
 import Photo from '../components/Photo.astro';
-import SectionLabel from '../components/SectionLabel.astro';
 import Steps from '../components/Steps.astro';
 import Layout from '../layouts/Layout.astro';
 import { whatsappUrl } from '../site.config';
+
+const reasons = [
+  { title: 'Straight quotes', body: 'Tell us what you need on WhatsApp — pricing and timeline, same day.' },
+  { title: 'No file? No problem', body: "Sketch it, describe it, or send a photo of the broken part — we'll model it." },
+  { title: 'Watch it get made', body: "From review to delivery, you'll know exactly where your part is." },
+];
 
 const services = [
   { kicker: 'CAD', title: 'Product Design', body: 'Sketches become manufacturable models.' },
@@ -15,60 +20,113 @@ const services = [
   { kicker: 'DFM', title: 'Engineering Support', body: 'Straight answers on tolerances, materials, assembly.' },
 ];
 
-const steps = [
-  { title: 'Send it', body: 'A sketch, a file, a broken part.' },
-  { title: 'We review', body: 'Feasibility, materials, cost — no guesswork.' },
-  { title: 'We prototype', body: 'Build and test before anything scales.' },
-  { title: 'We deliver', body: 'A finished part, in your hands.' },
+const tourSteps = [
+  { title: 'Start here', body: 'Tap WhatsApp to tell us what you need — a sketch, a file, or a photo of a broken part.', next: 'Next' },
+  { title: 'Get your quote', body: "We'll reply with pricing and a timeline, usually the same day.", next: 'Get a Quote' },
 ];
 ---
 
 <Layout>
-  <section class="split pt-[72px] pb-14">
-    <div>
-      <span class="kicker mb-4">Design · Engineer · Fabricate</span>
-      <h1 class="display display-xl">
-        <span class="block">Ideas in.</span><span class="block">Parts out.</span>
-      </h1>
-      <p class="lead mt-6 max-w-[50ch] text-[18px]">CAD design, rapid prototyping and 3D printing — built around the part you actually need, not a catalog of what we can do.</p>
-      <div class="btn-row mt-8">
-        <Button href={whatsappUrl}>WhatsApp Us</Button>
-        <Button href="/projects/" variant="ghost">See Our Work</Button>
+  <section class="split pt-14 pb-6">
+    <div class="fade-up relative z-10">
+      <h1 class="display display-xl">Ideas in.<br />Parts out.</h1>
+      <p class="lead mt-[22px] max-w-[46ch] text-[18px]">CAD design, rapid prototyping and 3D printing — built around the part you actually need, not a catalog of what we can do.</p>
+      <div class="btn-row mt-[30px]">
+        <div class="tour-anchor" id="home-tour" data-steps={JSON.stringify(tourSteps)}>
+          <div class="tour-ring" data-tour-ring hidden></div>
+          <Button href={whatsappUrl}>WhatsApp Us</Button>
+          <div class="tour-card" data-tour-card role="dialog" aria-label="Quick tour" hidden>
+            <div class="tour-dots" data-tour-dots>{tourSteps.map(() => <span></span>)}</div>
+            <div class="mb-1.5 text-[15px] font-extrabold" data-tour-title></div>
+            <p class="mt-0 mb-4 text-[13px] leading-[1.55] text-white/70" data-tour-body></p>
+            <div class="flex items-center justify-between gap-3">
+              <button type="button" class="cursor-pointer text-[13px] font-semibold text-white/55 hover:text-white" data-tour-skip>Skip</button>
+              <button type="button" class="btn btn-primary cursor-pointer px-[18px] py-2 text-[13px]" data-tour-next></button>
+            </div>
+          </div>
+        </div>
+        <Button href="/projects/" variant="outline">See Our Work</Button>
       </div>
+      <p class="mt-[18px] mb-0 text-[13px] text-subtle">An engineer reviews every project before any quote goes out.</p>
     </div>
-    <Photo src="/images/hero-main.webp" alt="3D printer producing a honeycomb-patterned part" width={513} height={912} ratio="1 / 1" eager />
+    <Photo class="fade-up-late shadow-[0_24px_48px_rgba(21,23,26,0.14)]" src="/images/hero-main.webp" alt="3D printer producing a honeycomb-patterned part" eager />
   </section>
 
-  <section class="pt-12 pb-14">
-    <SectionLabel label="01 · What we do" />
+  <section class="pt-[72px] pb-14">
+    <span class="eyebrow">Why work with us</span>
+    <h2 class="h2 h2-lg mb-9 max-w-[28ch]">Functional doesn't have to be slow or confusing.</h2>
+    <Steps steps={reasons} large />
+  </section>
+
+  <section class="pb-14">
+    <div class="mb-8">
+      <span class="eyebrow">What we do</span>
+      <h2 class="h2">From sketch to finished part.</h2>
+    </div>
     <div class="card-grid" style="--card-min:220px;">
       {services.map((s) => <Card kicker={s.kicker} title={s.title}>{s.body}</Card>)}
     </div>
-    <div class="mt-6"><a href="/services/" class="link-arrow">All services →</a></div>
+    <div class="mt-[26px]"><a href="/services/" class="link-arrow">All services →</a></div>
   </section>
 
-  <section class="pt-12 pb-14">
-    <SectionLabel label="02 · How we work" />
-    <Steps steps={steps} />
-  </section>
-
-  <section class="split pt-14 pb-16" style="--split-a:5fr;--split-b:7fr;">
-    <Photo src="/images/home-impact.webp" alt="Clinician working with a patient" width={830} height={664} />
+  <section class="split pb-16">
+    <Photo src="/images/home-impact.webp" alt="Technician assembling a 3D-printed device at a workbench" />
     <div>
-      <span class="kicker mb-2">03 · Real-world impact</span>
-      <hr class="rule mb-5" />
-      <h2 class="h2 text-[clamp(26px,3vw,36px)]">Built for the clinics that need it most.</h2>
-      <p class="lead mt-5 max-w-[44ch] text-[16px]">Every part starts with a patient, not a spec sheet. We work with clinicians across Kenya, Colombia and Rwanda to design hardware that fits real budgets, supply chains and timelines.</p>
-      <div class="mt-5"><a href="/projects/" class="link-arrow">See the impact stories →</a></div>
+      <span class="eyebrow">Real-world impact</span>
+      <h2 class="h2 h2-lg">Built for the clinics that need it most.</h2>
+      <p class="lead max-w-[44ch] text-[16px]">Every part starts with a patient, not a spec sheet. We work with clinicians across Kenya, Colombia and Rwanda to design hardware that fits real budgets, supply chains and timelines.</p>
+      <div class="mt-[18px]"><a href="/projects/" class="link-arrow">See the impact stories →</a></div>
     </div>
   </section>
 
   <CTASection
     large
-    label="04 · Start a project"
+    label="Start a project"
     title="Got something to build?"
     description="Send a sketch, a file, or a photo of the broken part. We'll tell you the fastest way to a real one."
     secondaryHref="/contact/"
     secondaryLabel="Request a Quote"
   />
 </Layout>
+
+<script>
+  // Two-step tour anchored to the hero WhatsApp button, shown once per browser.
+  const SEEN_KEY = 'ajHomeTourSeen';
+  const root = document.querySelector<HTMLElement>('#home-tour');
+  const hasSeen = () => {
+    try { return Boolean(localStorage.getItem(SEEN_KEY)); } catch { return true; }
+  };
+
+  if (root && !hasSeen()) {
+    const steps: { title: string; body: string; next: string }[] = JSON.parse(root.dataset.steps ?? '[]');
+    const ring = root.querySelector<HTMLElement>('[data-tour-ring]')!;
+    const card = root.querySelector<HTMLElement>('[data-tour-card]')!;
+    const title = root.querySelector<HTMLElement>('[data-tour-title]')!;
+    const body = root.querySelector<HTMLElement>('[data-tour-body]')!;
+    const next = root.querySelector<HTMLButtonElement>('[data-tour-next]')!;
+    const dots = [...root.querySelectorAll<HTMLElement>('[data-tour-dots] > span')];
+    let current = 0;
+
+    const show = (index: number) => {
+      current = index;
+      title.textContent = steps[index].title;
+      body.textContent = steps[index].body;
+      next.textContent = steps[index].next;
+      dots.forEach((dot, i) => dot.toggleAttribute('data-active', i === index));
+      ring.hidden = false;
+      card.hidden = false;
+    };
+    const finish = () => {
+      ring.hidden = true;
+      card.hidden = true;
+      try { localStorage.setItem(SEEN_KEY, '1'); } catch {}
+    };
+
+    next.addEventListener('click', () => (current < steps.length - 1 ? show(current + 1) : finish()));
+    root.querySelector('[data-tour-skip]')?.addEventListener('click', finish);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !card.hidden) finish();
+    });
+    setTimeout(() => show(0), 1100);
+  }
+</script>
