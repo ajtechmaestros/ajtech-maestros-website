@@ -1,19 +1,24 @@
 ---
 import Button from './Button.astro';
-interface Props { eyebrow?: string; title: string; description?: string; primaryHref: string; primaryLabel: string; secondaryHref?: string; secondaryLabel?: string; tone?: 'dark' | 'light'; }
-const { eyebrow, title, description, primaryHref, primaryLabel, secondaryHref, secondaryLabel, tone = 'dark' } = Astro.props;
-const dark = tone === 'dark';
+import { whatsappLink } from '../site.config';
+
+interface Props {
+  label?: string;
+  title: string;
+  description?: string;
+  whatsappMessage?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  large?: boolean;
+}
+const { label, title, description, whatsappMessage, secondaryHref, secondaryLabel, large = false } = Astro.props;
 ---
-<section class:list={['px-4 py-16 sm:px-6 lg:px-8', dark ? 'bg-ink text-white' : 'bg-panel text-ink']}>
-  <div class="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-    <div class="max-w-3xl">
-      {eyebrow && <p class="text-sm font-black uppercase tracking-[0.2em] text-accent">{eyebrow}</p>}
-      <h2 class="mt-3 text-3xl font-black tracking-tight sm:text-4xl">{title}</h2>
-      {description && <p class:list={['mt-4 text-base leading-7 sm:text-lg', dark ? 'text-neutral-300' : 'text-neutral-600']}>{description}</p>}
-    </div>
-    <div class="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-      <Button href={primaryHref} variant={dark ? 'light' : 'primary'} size="lg">{primaryLabel}</Button>
-      {secondaryHref && secondaryLabel && <Button href={secondaryHref} variant={dark ? 'ghost' : 'secondary'} size="lg" class={dark ? 'text-white hover:bg-white/10' : ''}>{secondaryLabel}</Button>}
-    </div>
+<section class="border-t border-divider pt-12 pb-16">
+  {label && <span class="kicker mb-3">{label}</span>}
+  <h2 class:list={['h2', large && 'h2-lg']}>{title}</h2>
+  {description && <p class="lead mt-4 max-w-[50ch] text-[16px]">{description}</p>}
+  <div class="btn-row mt-7">
+    <Button href={whatsappLink(whatsappMessage)}>WhatsApp Us</Button>
+    {secondaryHref && secondaryLabel && <Button href={secondaryHref} variant="ghost">{secondaryLabel}</Button>}
   </div>
 </section>

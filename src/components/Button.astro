@@ -1,23 +1,20 @@
 ---
+import Corners from './Corners.astro';
+
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'dark' | 'light' | 'ghost';
-  size?: 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'ghost';
   type?: 'button' | 'submit' | 'reset';
-  target?: string;
-  rel?: string;
+  block?: boolean;
   class?: string;
 }
-const { href, variant = 'primary', size = 'md', type = 'button', target, rel, class: className = '' } = Astro.props;
-const base = 'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:pointer-events-none disabled:opacity-60';
-const sizes = { md: 'min-h-11 px-5 text-sm', lg: 'min-h-12 px-6 text-base' };
-const variants = {
-  primary: 'bg-accent text-white shadow-sm shadow-accent/20 hover:bg-accent-dark',
-  secondary: 'border border-neutral-300 bg-white text-ink hover:border-neutral-900 hover:bg-neutral-50',
-  dark: 'bg-ink text-white hover:bg-neutral-800',
-  light: 'bg-white text-ink hover:bg-neutral-100',
-  ghost: 'text-ink hover:bg-neutral-100',
-};
-const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;
+const { href, variant = 'primary', type = 'button', block = false, class: className = '' } = Astro.props;
+const primary = variant === 'primary';
+const external = href?.startsWith('http');
+const classes = ['btn', `btn-${variant}`, primary && 'blueprint', block && 'btn-block', className];
 ---
-{href ? <a href={href} class={classes} target={target} rel={rel}><slot /></a> : <button type={type} class={classes}><slot /></button>}
+{href ? (
+  <a href={href} class:list={classes} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{primary && <Corners />}<slot /></a>
+) : (
+  <button type={type} class:list={classes}>{primary && <Corners />}<slot /></button>
+)}

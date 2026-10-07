@@ -1,0 +1,10 @@
+---
+interface Props { label?: string; title?: string; description?: string; }
+const { label, title, description } = Astro.props;
+---
+<div class="mb-7">
+  {label && <span class="kicker mb-2">{label}</span>}
+  <hr class="rule" />
+  {title && <h2 class="h2 mt-5">{title}</h2>}
+  {description && <p class="lead mt-4 text-[16px]">{description}</p>}
+</div>
