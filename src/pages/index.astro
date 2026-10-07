@@ -1,148 +1,74 @@
 ---
-
 import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
 import CTASection from '../components/CTASection.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import ServiceCard from '../components/ServiceCard.astro';
+import Photo from '../components/Photo.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Steps from '../components/Steps.astro';
 import Layout from '../layouts/Layout.astro';
-
+import { whatsappUrl } from '../site.config';
 
 const services = [
-  { code: 'CAD', title: 'Product Design & CAD', description: 'Parametric modelling, assemblies, design refinement, reverse engineering and production drawings.' },
-  { code: '3DP', title: '3D Printing', description: 'Functional parts, prototypes, replacement components, custom products and short-run production.' },
-  { code: 'PT', title: 'Rapid Prototyping', description: 'Fast physical iterations to test fit, form, ergonomics and mechanisms before production.' },
-  { code: 'DFM', title: 'Engineering & DFM Support', description: 'Practical engineering input on tolerances, materials, manufacturability, assembly and fabrication decisions.' },
+  { kicker: 'CAD', title: 'Product Design', body: 'Sketches become manufacturable models.' },
+  { kicker: '3DP', title: '3D Printing', body: 'Functional parts, fast, in the material you need.' },
+  { kicker: 'PT', title: 'Prototyping', body: 'Test fit and function before you commit to production.' },
+  { kicker: 'DFM', title: 'Engineering Support', body: 'Straight answers on tolerances, materials, assembly.' },
+];
+
+const steps = [
+  { title: 'Send it', body: 'A sketch, a file, a broken part.' },
+  { title: 'We review', body: 'Feasibility, materials, cost — no guesswork.' },
+  { title: 'We prototype', body: 'Build and test before anything scales.' },
+  { title: 'We deliver', body: 'A finished part, in your hands.' },
 ];
 ---
 
-<Layout
-  title="AJ Tech Maestros | Design, Engineering, Prototyping & 3D Printing"
-  description="AJ Tech Maestros helps individuals, startups and organizations turn ideas into engineered products through CAD design, rapid prototyping, 3D printing and practical engineering support."
->
-  <section class="relative isolate overflow-hidden bg-ink text-white">
-    <div class="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.28),transparent_34%),linear-gradient(135deg,#0f1115_0%,#111827_58%,#1f2937_100%)]"></div>
-    <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,.04)_1px,transparent_1px)] bg-[size:36px_36px]"></div>
-    <div class="mx-auto grid min-h-[72svh] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.12fr_.88fr] lg:px-8">
-      <div>
-        <p class="text-sm font-black uppercase tracking-[0.24em] text-accent">Design • Engineering • Fabrication</p>
-        <h1 class="mt-5 max-w-4xl text-5xl font-black tracking-tight sm:text-6xl lg:text-7xl">Turn ideas into engineered products.</h1>
-        <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-300 sm:text-xl">
-          AJ Tech Maestros helps individuals ,teams and organizations move from concept to physical product through CAD design, rapid prototyping, 3D printing and practical engineering support.
-        </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="/request-quote/" size="lg">Request a Quote</Button>
-          <Button
-  href="/services/"
-  variant="light"
-  size="lg"
-  class="!text-neutral-900"
->
-  Explore Services
-</Button>
-        </div>
-      </div>
-
-
-          
-        
-
-      <div class="relative mx-auto w-full max-w-xl">
-  <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] shadow-2xl shadow-black/30">
-    <img
-      src="/images/A1_mini.jpeg"
-      alt="Bambu Lab A1 Mini 3D printer"
-      class="h-[420px] w-full object-cover"
-    />
-  </div>
-
-  <div class="absolute -bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-[#1b1d24]/95 p-5 shadow-xl backdrop-blur">
-    <div class="flex items-start gap-4">
-      <div class="mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl bg-ink p-1.5">
-  <img
-    src="images/AJTM.png.png"
-    alt="AJ Tech Maestros"
-    class="size-full object-contain"
-  />
-</div>
-
-      <div>
-        <p class="text-sm font-bold text-white">From digital idea to physical part</p>
-        <p class="mt-1 text-sm leading-6 text-neutral-400">
-          We design it, prototype it and make it real.
-        </p>
+<Layout>
+  <section class="split pt-[72px] pb-14">
+    <div>
+      <span class="kicker mb-4">Design · Engineer · Fabricate</span>
+      <h1 class="display display-xl">
+        <span class="block">Ideas in.</span><span class="block">Parts out.</span>
+      </h1>
+      <p class="lead mt-6 max-w-[50ch] text-[18px]">CAD design, rapid prototyping and 3D printing — built around the part you actually need, not a catalog of what we can do.</p>
+      <div class="btn-row mt-8">
+        <Button href={whatsappUrl}>WhatsApp Us</Button>
+        <Button href="/projects/" variant="ghost">See Our Work</Button>
       </div>
     </div>
-  </div>
-</div>
-    </div>
+    <Photo src="/images/hero-main.webp" alt="3D printer producing a honeycomb-patterned part" width={513} height={912} ratio="1 / 1" eager />
   </section>
 
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <SectionHeader
-        eyebrow="What we do"
-        title="From first sketch to physical part"
-        description="The Abe3D commercial services have been carried forward and expanded into a broader engineering workflow for design, prototyping and fabrication."
-      />
-      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {services.map((service) => <ServiceCard {...service} />)}
-      </div>
+  <section class="pt-12 pb-14">
+    <SectionLabel label="01 · What we do" />
+    <div class="card-grid" style="--card-min:220px;">
+      {services.map((s) => <Card kicker={s.kicker} title={s.title}>{s.body}</Card>)}
     </div>
+    <div class="mt-6"><a href="/services/" class="link-arrow">All services →</a></div>
   </section>
 
-  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
-      <SectionHeader
-        eyebrow="How we work"
-        title="A practical path from problem to solution"
-        description="We review the requirement first, choose the right design and fabrication path, then iterate before committing to larger production."
-      />
-      <div class="grid gap-4 sm:grid-cols-2">
-        {[
-          ['01', 'Share the need', 'Send a sketch, dimensions, file, photo, broken part or project brief.'],
-          ['02', 'Review & design', 'We assess feasibility, CAD requirements, materials, tolerances and production options.'],
-          ['03', 'Prototype & test', 'We make and refine the part or prototype before final production where needed.'],
-          ['04', 'Produce & deliver', 'We finish the agreed part, product or small batch and arrange delivery or collection.'],
-        ].map(([code, title, copy]) => (
-          <article class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-            <p class="text-sm font-black text-accent">{code}</p>
-            <h3 class="mt-2 text-xl font-black">{title}</h3>
-            <p class="mt-3 text-sm leading-6 text-neutral-600">{copy}</p>
-          </article>
-        ))}
-      </div>
-    </div>
+  <section class="pt-12 pb-14">
+    <SectionLabel label="02 · How we work" />
+    <Steps steps={steps} />
   </section>
-    <!-- IMPACT / HUMAN ELEMENT -->
-  <section class="py-20 bg-[#0d0d0d]">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-[#10b981] font-bold tracking-widest text-sm mb-4 uppercase">Real-world impact</p>
-        <h2 class="text-3xl font-extrabold text-white md:text-4xl mb-6">Built for the clinics that need it most.</h2>
-        <p class="text-neutral-400 text-lg leading-relaxed mb-6">
-          Every part we print starts with a patient, not a spec sheet. We work directly with clinicians across Kenya to design hardware that fits real constraints — budget, supply chains, and turnaround time.
-        </p>
-        <a href="/impact/" class="inline-flex w-fit items-center gap-2 text-[#10b981] font-semibold hover:gap-3 transition-all">
-          See our impact stories →
-        </a>
-      </div>
-      <div class="relative mx-auto max-w-md lg:max-w-none">
-        <img
-          src="/images/impact2.jpg"
-          alt="Clinician using AJ Tech Maestros equipment"
-          class="rounded-3xl shadow-2xl border border-neutral-800 w-full object-cover aspect-[4/5]"
-        />
-      </div>
+
+  <section class="split pt-14 pb-16" style="--split-a:5fr;--split-b:7fr;">
+    <Photo src="/images/home-impact.webp" alt="Clinician working with a patient" width={830} height={664} />
+    <div>
+      <span class="kicker mb-2">03 · Real-world impact</span>
+      <hr class="rule mb-5" />
+      <h2 class="h2 text-[clamp(26px,3vw,36px)]">Built for the clinics that need it most.</h2>
+      <p class="lead mt-5 max-w-[44ch] text-[16px]">Every part starts with a patient, not a spec sheet. We work with clinicians across Kenya, Colombia and Rwanda to design hardware that fits real budgets, supply chains and timelines.</p>
+      <div class="mt-5"><a href="/projects/" class="link-arrow">See the impact stories →</a></div>
     </div>
   </section>
 
   <CTASection
-    eyebrow="Start a project"
-    title="Have an idea, drawing, file or part you need made?"
-    description="Send the requirement and AJ Tech Maestros will help determine the most practical next step."
-    primaryHref="/request-quote/"
-    primaryLabel="Request a Quote"
+    large
+    label="04 · Start a project"
+    title="Got something to build?"
+    description="Send a sketch, a file, or a photo of the broken part. We'll tell you the fastest way to a real one."
     secondaryHref="/contact/"
-    secondaryLabel="Contact Us"
+    secondaryLabel="Request a Quote"
   />
 </Layout>
