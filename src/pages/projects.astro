@@ -1,60 +1,25 @@
 ---
-import Card from '../components/Card.astro';
-import Corners from '../components/Corners.astro';
 import CTASection from '../components/CTASection.astro';
+import PageHero from '../components/PageHero.astro';
 import Photo from '../components/Photo.astro';
-import SectionLabel from '../components/SectionLabel.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Add `image: '/images/port-0X.webp'` to a category once its photo is ready.
-const portfolio: { title: string; body: string; image?: string }[] = [
-  { title: 'Product Prototypes', body: 'Enclosures, fixtures, fit checks and mechanisms.' },
-  { title: 'Custom & Functional Prints', body: 'Replacement parts, organizers and branded products.' },
-  { title: 'CAD & Engineering Work', body: 'Parametric models, assemblies, reverse-engineered parts.' },
-  { title: 'Technical Workshops', body: 'Hands-on CAD, slicing and project-based prototyping.' },
-  { title: 'Assistive Technology', body: 'Responsibly documented, stakeholder-reviewed development.' },
-  { title: 'Small-Batch Production', body: 'Short runs that validate a product before scale.' },
-];
 ---
 
-<Layout title="Projects | AJ Tech Maestros" description="Selected AJ Tech Maestros work: the Affordable Prostheses Project, product prototypes, CAD and engineering work, workshops and small-batch production.">
-  <section class="pt-14 pb-12">
-    <span class="kicker mb-4">Projects</span>
-    <h1 class="display">Work that shows how we think.</h1>
-  </section>
+<Layout title="Projects | AJ Tech Maestros" description="Selected AJ Tech Maestros work, including the Affordable Prostheses Project developed with partners across Kenya, Colombia and Rwanda.">
+  <PageHero title="Work that shows how we think." />
 
-  <section class="pb-16">
-    <div class="card blueprint p-6 sm:p-8">
-      <Corners />
-      <div class="split" style="--split-a:7fr;--split-b:5fr;">
+  <section class="pb-14">
+    <div class="card rounded-[24px] p-6 sm:p-8">
+      <div class="split gap-x-12 gap-y-8 [grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))]">
         <div>
-          <div class="card-kicker">Featured initiative</div>
-          <h2 class="h2 mt-2 mb-4">Affordable Prostheses Project</h2>
-          <p class="lead mb-4 max-w-none text-[16px]">3D-printed prosthetic and assistive devices, designed with clinicians and built for real-world constraints — budget, supply chains, turnaround time.</p>
-          <p class="muted m-0 text-[14px] leading-[1.6]">Developed with partners across Kenya, Colombia and Rwanda — including Hugo Esteban Rojas and Dr. Salsawit T. Yigrem, alongside clinical, student and community collaborators.</p>
+          <span class="mb-3.5 inline-block rounded-full border border-line bg-bg px-3.5 py-1.5 text-[12px] font-bold text-accent">Featured initiative</span>
+          <h2 class="mb-3.5 text-[clamp(24px,3vw,32px)] tracking-[-0.01em]">Affordable Prostheses Project</h2>
+          <p class="mt-0 mb-3.5 text-[16px] leading-[1.6] text-[rgba(21,23,26,0.72)]">3D-printed prosthetic and assistive devices, designed with clinicians and built for real-world constraints — budget, supply chains, turnaround time.</p>
+          <p class="m-0 text-[14px] leading-[1.6] text-[rgba(21,23,26,0.56)]">Developed with partners across Kenya, Colombia and Rwanda — including Hugo Esteban Rojas and Dr. Salsawit T. Yigrem, alongside clinical, student and community collaborators.</p>
         </div>
-        <Photo src="/images/proj-prosthetics.webp" alt="3D-printed prosthetic device" width={521} height={782} ratio="4 / 3" />
+        <Photo class="rounded-[18px]" src="/images/proj-prosthetics.webp" alt="3D-printed prosthetic hand" ratio="4 / 3" shadow={false} />
       </div>
     </div>
-  </section>
-
-  <section class="pb-14">
-    <SectionLabel label="Portfolio" />
-    <div class="card-grid">
-      {portfolio.map((p) => (
-        <Card title={p.title}>
-          {p.image && <Photo slot="photo" class="card-photo" src={p.image} alt={p.title} ratio="4 / 3" framed={false} />}
-          {p.body}
-        </Card>
-      ))}
-    </div>
-    <p class="muted mt-3 text-[14px] leading-[1.6]">More categories are added as documentation is prepared.</p>
-  </section>
-
-  <section class="pb-14">
-    <Card kicker="Responsible development" class="p-6">
-      Assistive and medical-adjacent work is developed and reviewed with clinical and community stakeholders before use. We do not treat experimental prototypes as clinically validated devices.
-    </Card>
   </section>
 
   <CTASection
