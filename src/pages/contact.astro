@@ -1,29 +1,40 @@
 ---
 import Button from '../components/Button.astro';
-import Card from '../components/Card.astro';
 import PageHero from '../components/PageHero.astro';
 import Layout from '../layouts/Layout.astro';
 import { siteConfig, whatsappBase, whatsappUrl } from '../site.config';
+
+const infoLabel = 'mb-1.5 text-[12px] font-bold uppercase tracking-[0.05em] text-accent';
+const infoCard = 'card rounded-[16px] p-5';
 ---
 
 <Layout title="Contact | AJ Tech Maestros" description="Contact AJ Tech Maestros on WhatsApp, by phone or email for CAD, prototyping, 3D printing and engineering support.">
-  <PageHero label="Contact" title="Send the requirement first." description="A sketch, a file, dimensions or a broken part — fastest is WhatsApp. For longer briefs, use the form." />
+  <PageHero title="Send the requirement first." description="A sketch, a file, dimensions or a broken part — fastest is WhatsApp. For longer briefs, use the form." />
 
-  <section class="pb-16">
-    <div class="split items-start" style="--split-a:5fr;--split-b:7fr;">
-      <div class="flex flex-col gap-5">
+  <section class="pb-[72px]">
+    <div class="grid items-start gap-x-12 gap-y-6 [grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))]">
+      <div class="flex flex-col gap-4">
         <Button href={whatsappUrl} block>Chat on WhatsApp</Button>
-        <Card kicker="Phone / WhatsApp"><a href={whatsappBase} target="_blank" rel="noopener">{siteConfig.phoneDisplay}</a></Card>
-        <Card kicker="Email"><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></Card>
-        <Card kicker="Location">{siteConfig.location}</Card>
+        <div class={infoCard}>
+          <div class={infoLabel}>Phone / WhatsApp</div>
+          <a href={whatsappBase} target="_blank" rel="noopener" class="text-[15px] font-semibold text-ink hover:text-accent">{siteConfig.phoneDisplay}</a>
+        </div>
+        <div class={infoCard}>
+          <div class={infoLabel}>Email</div>
+          <a href={`mailto:${siteConfig.email}`} class="text-[15px] font-semibold break-words text-ink hover:text-accent">{siteConfig.email}</a>
+        </div>
+        <div class={infoCard}>
+          <div class={infoLabel}>Location</div>
+          <div class="text-[15px] font-semibold">{siteConfig.location}</div>
+        </div>
       </div>
 
-      <form id="whatsapp-form" class="flex flex-col gap-4" data-whatsapp={whatsappBase}>
+      <form id="whatsapp-form" class="card flex flex-col gap-4 p-7" data-whatsapp={whatsappBase}>
         <div class="field"><label for="c-name">Name</label><input class="input" id="c-name" name="name" type="text" placeholder="Your name" autocomplete="name" required /></div>
         <div class="field"><label for="c-contact">Phone or email</label><input class="input" id="c-contact" name="contact" type="text" placeholder="How we reach you" required /></div>
         <div class="field"><label for="c-brief">What do you need made?</label><textarea class="input" id="c-brief" name="brief" placeholder="Sketch, file, dimensions, or a short description"></textarea></div>
-        <Button type="submit" class="self-start">Send via WhatsApp</Button>
-        <p class="muted m-0 text-[14px]">Have files to attach or a detailed spec? <a href="/request-quote/" class="link-arrow">Use the full quote form →</a></p>
+        <Button type="submit" class="self-start px-[26px] py-3.5">Send via WhatsApp</Button>
+        <p class="m-0 text-[13px] text-subtle">Have files to attach or a detailed spec? <a href="/request-quote/" class="link-arrow">Use the full quote form →</a></p>
       </form>
     </div>
   </section>

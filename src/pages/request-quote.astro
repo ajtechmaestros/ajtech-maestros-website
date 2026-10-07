@@ -19,15 +19,15 @@ const inquiryTypes = [
 ---
 
 <Layout title="Request a Quote | AJ Tech Maestros" description="Request a quote for CAD design, engineering, rapid prototyping, 3D printing, custom products or technical training from AJ Tech Maestros.">
-  <PageHero label="Request a quote" title="Details first. Build second." description="Tell us what you want to make, repair, design, prototype or learn — attach files if you have them." />
+  <PageHero title="Details first. Build second." description="Tell us what you want to make, repair, design, prototype or learn — attach files if you have them." />
 
-  <section class="pb-16">
-    <div class="split items-start" style="--split-a:5fr;--split-b:7fr;">
-      <div class="flex flex-col gap-5">
+  <section class="pb-[72px]">
+    <div class="grid items-start gap-x-12 gap-y-6 lg:grid-cols-[5fr_7fr]">
+      <div class="flex flex-col gap-4">
         <Button href={whatsappUrl} block>Chat on WhatsApp</Button>
-        <Card kicker="Specs">Dimensions, quantity, material, finish, colour and deadline where relevant.</Card>
-        <Card kicker="Files">STL, STEP, 3MF, OBJ, PDF, a drawing or a reference photo.</Card>
-        <Card kicker="Training">Audience, skill level, location, preferred format and goals.</Card>
+        <Card lift={false} class="rounded-[16px] p-5" kicker="Specs">Dimensions, quantity, material, finish, colour and deadline where relevant.</Card>
+        <Card lift={false} class="rounded-[16px] p-5" kicker="Files">STL, STEP, 3MF, OBJ, PDF, a drawing or a reference photo.</Card>
+        <Card lift={false} class="rounded-[16px] p-5" kicker="Training">Audience, skill level, location, preferred format and goals.</Card>
       </div>
 
       <form
@@ -38,7 +38,7 @@ const inquiryTypes = [
         data-netlify-honeypot="bot-field"
         enctype="multipart/form-data"
         accept-charset="UTF-8"
-        class="grid gap-4 sm:grid-cols-2"
+        class="card grid gap-4 p-7 sm:grid-cols-2"
       >
         <input type="hidden" name="form-name" value="quote-request" />
         <p class="hidden"><label>Do not fill this out if you are human: <input name="bot-field" /></label></p>
