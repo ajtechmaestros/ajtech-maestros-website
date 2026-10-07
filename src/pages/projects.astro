@@ -1,60 +1,66 @@
 ---
+import Card from '../components/Card.astro';
+import Corners from '../components/Corners.astro';
 import CTASection from '../components/CTASection.astro';
-import SectionHeader from '../components/SectionHeader.astro';
+import Photo from '../components/Photo.astro';
+import SectionLabel from '../components/SectionLabel.astro';
 import Layout from '../layouts/Layout.astro';
 
-const projectWork = [
-  'Design and fabrication of affordable 3D printed prosthetic and assistive devices',
-  'Collaboration with clinicians, students, technical teams and community partners',
-  'Training local teams in digital fabrication workflows',
-  'Iterative design based on user needs and practical field feedback',
-  'Regional collaboration across Kenya, Colombia, Rwanda and beyond',
+// Add `image: '/images/port-0X.webp'` to a category once its photo is ready.
+const portfolio: { title: string; body: string; image?: string }[] = [
+  { title: 'Product Prototypes', body: 'Enclosures, fixtures, fit checks and mechanisms.' },
+  { title: 'Custom & Functional Prints', body: 'Replacement parts, organizers and branded products.' },
+  { title: 'CAD & Engineering Work', body: 'Parametric models, assemblies, reverse-engineered parts.' },
+  { title: 'Technical Workshops', body: 'Hands-on CAD, slicing and project-based prototyping.' },
+  { title: 'Assistive Technology', body: 'Responsibly documented, stakeholder-reviewed development.' },
+  { title: 'Small-Batch Production', body: 'Short runs that validate a product before scale.' },
 ];
 ---
 
-<Layout title="Projects | AJ Tech Maestros" description="Selected engineering, prototyping, digital fabrication and assistive technology projects connected to AJ Tech Maestros.">
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <p class="text-sm font-black uppercase tracking-[0.22em] text-accent">Projects</p>
-      <h1 class="mt-5 max-w-5xl text-4xl font-black tracking-tight text-ink sm:text-5xl lg:text-6xl">Work that shows how we think, design and build.</h1>
-      <p class="mt-6 max-w-3xl text-base leading-8 text-neutral-600 sm:text-xl">This portfolio carries forward the most relevant Abe3D project structure while creating room for broader CAD, product-development and engineering work under AJ Tech Maestros.</p>
-    </div>
+<Layout title="Projects | AJ Tech Maestros" description="Selected AJ Tech Maestros work: the Affordable Prostheses Project, product prototypes, CAD and engineering work, workshops and small-batch production.">
+  <section class="pt-14 pb-12">
+    <span class="kicker mb-4">Projects</span>
+    <h1 class="display">Work that shows how we think.</h1>
   </section>
 
-  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
-      <SectionHeader eyebrow="Featured initiative" title="Affordable Prostheses Project" description="A collaborative assistive-technology initiative that uses digital fabrication, training and partnerships to improve access to affordable prosthetic and assistive solutions." />
-      <article class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <p class="text-sm leading-7 text-neutral-700">The project grew through collaboration with partners from Kenya, Colombia and Rwanda, including Hugo Esteban Rojas and Dr. Salsawit T. Yigrem, alongside student, clinical, technical and community collaborators.</p>
-        <ul class="mt-6 grid gap-3 text-sm leading-6 text-neutral-700">
-          {projectWork.map((point) => <li class="flex gap-2"><span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span><span>{point}</span></li>)}
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <SectionHeader eyebrow="Portfolio structure" title="More project categories will be added as documentation is prepared" description="The old Abe3D gallery used placeholders for prototypes, printed products, workshops and assistive technology. Those categories are retained here in a cleaner engineering portfolio structure." />
-      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {[
-          ['Product prototypes', 'Enclosures, fixtures, fit checks, mechanisms and iteration-ready physical prototypes.'],
-          ['Custom & functional prints', 'Replacement parts, organizers, branded products, gifts and practical printed components.'],
-          ['CAD & engineering work', 'Parametric models, assemblies, reverse-engineered parts and production-oriented design work.'],
-          ['Technical workshops', 'Hands-on CAD, slicing, printer operation and project-based prototyping sessions.'],
-          ['Assistive technology', 'Responsibly documented prostheses and assistive technology development with relevant stakeholders.'],
-          ['Small-batch production', 'Short runs used to validate products before larger production decisions.'],
-        ].map(([title, copy]) => <article class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"><h3 class="text-xl font-black">{title}</h3><p class="mt-3 text-sm leading-6 text-neutral-600">{copy}</p></article>)}
+  <section class="pb-16">
+    <div class="card blueprint p-6 sm:p-8">
+      <Corners />
+      <div class="split" style="--split-a:7fr;--split-b:5fr;">
+        <div>
+          <div class="card-kicker">Featured initiative</div>
+          <h2 class="h2 mt-2 mb-4">Affordable Prostheses Project</h2>
+          <p class="lead mb-4 max-w-none text-[16px]">3D-printed prosthetic and assistive devices, designed with clinicians and built for real-world constraints — budget, supply chains, turnaround time.</p>
+          <p class="muted m-0 text-[14px] leading-[1.6]">Developed with partners across Kenya, Colombia and Rwanda — including Hugo Esteban Rojas and Dr. Salsawit T. Yigrem, alongside clinical, student and community collaborators.</p>
+        </div>
+        <Photo src="/images/proj-prosthetics.webp" alt="3D-printed prosthetic device" width={521} height={782} ratio="4 / 3" />
       </div>
     </div>
   </section>
 
-  <section class="bg-panel px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl rounded-2xl border border-accent/25 bg-white p-6 shadow-sm">
-      <p class="text-sm font-black uppercase tracking-[0.18em] text-accent">Responsible development</p>
-      <p class="mt-4 max-w-4xl text-base leading-7 text-neutral-700">Assistive and medical-adjacent work should be developed and evaluated with relevant technical, clinical and community stakeholders before use. AJ Tech Maestros does not treat experimental prototypes as clinically validated devices.</p>
+  <section class="pb-14">
+    <SectionLabel label="Portfolio" />
+    <div class="card-grid">
+      {portfolio.map((p) => (
+        <Card title={p.title}>
+          {p.image && <Photo slot="photo" class="card-photo" src={p.image} alt={p.title} ratio="4 / 3" framed={false} />}
+          {p.body}
+        </Card>
+      ))}
     </div>
+    <p class="muted mt-3 text-[14px] leading-[1.6]">More categories are added as documentation is prepared.</p>
   </section>
 
-  <CTASection eyebrow="Have a project?" title="Bring us the requirement, reference or prototype challenge." description="We can help identify whether the next step is CAD, reverse engineering, prototyping, 3D printing or broader engineering support." primaryHref="/request-quote/" primaryLabel="Start a Project" secondaryHref="/contact/" secondaryLabel="Contact Us" />
+  <section class="pb-14">
+    <Card kicker="Responsible development" class="p-6">
+      Assistive and medical-adjacent work is developed and reviewed with clinical and community stakeholders before use. We do not treat experimental prototypes as clinically validated devices.
+    </Card>
+  </section>
+
+  <CTASection
+    title="Have a project?"
+    description="Bring us the requirement, reference or prototype challenge — we'll find the right next step."
+    secondaryHref="/contact/"
+    secondaryLabel="Contact Us"
+  />
 </Layout>
