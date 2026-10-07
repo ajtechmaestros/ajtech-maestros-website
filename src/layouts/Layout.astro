@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import Button from '../components/Button.astro';
-import { navItems, siteConfig, whatsappUrl } from '../site.config';
+import { navItems, siteConfig, whatsappBase, whatsappUrl } from '../site.config';
 
 interface Props {
   title?: string;
@@ -23,11 +23,11 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0f1115" />
+    <meta name="theme-color" content="#15171a" />
     <link rel="icon" type="image/svg+xml" href="/ajtm-mark.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -35,42 +35,43 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
     <div class="container-page">
       <header>
         <nav class="nav" aria-label="Main navigation">
-          <a href="/" class="nav-brand" aria-label={`${siteConfig.name} home`}>
-            <img src="/images/logo.png" alt={siteConfig.name} class="nav-logo" width="523" height="200" />
+          <a href="/" class="nav-brand">
+            <img src="/images/logo-mark.png" alt="" class="nav-logo" width="97" height="160" />
+            <span>{siteConfig.name}</span>
           </a>
           <div class="nav-links">
             {navItems.map((item) => (
               <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
             ))}
           </div>
-          <Button href={whatsappUrl}>WhatsApp Us</Button>
+          <Button href={whatsappUrl} size="sm">WhatsApp Us</Button>
         </nav>
       </header>
 
       <main><slot /></main>
 
-      <footer class="mt-4 border-t border-divider pt-14 pb-8">
-        <div class="mb-8 grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+      <footer class="pb-10">
+        <div class="mb-8 grid gap-8 border-t border-line pt-10 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
           <div>
-            <div class="font-heading text-[18px] font-bold uppercase tracking-[0.02em]">{siteConfig.name}</div>
-            <p class="muted mt-2 max-w-[32ch] text-[14px] leading-[1.6]">{siteConfig.tagline}<br />{siteConfig.location}.</p>
+            <div class="text-[18px] font-extrabold tracking-[-0.01em]">{siteConfig.name}</div>
+            <p class="mt-2 max-w-[32ch] text-[14px] leading-[1.6] text-[rgba(21,23,26,0.6)]">{siteConfig.tagline}<br />{siteConfig.location}.</p>
           </div>
           <div>
-            <div class="kicker mb-3">Pages</div>
-            <div class="flex flex-col gap-2">
-              {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+            <div class="eyebrow mb-3">Pages</div>
+            <div class="flex flex-col gap-2 text-[14px]">
+              {navItems.map((item) => <a href={item.href} class="text-ink hover:text-accent">{item.label}</a>)}
             </div>
           </div>
           <div>
-            <div class="kicker mb-3">Contact</div>
+            <div class="eyebrow mb-3">Contact</div>
             <div class="flex flex-col gap-2 text-[14px]">
-              <a href={whatsappUrl} target="_blank" rel="noopener">WhatsApp: {siteConfig.phoneDisplay}</a>
-              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-              <span class="muted">{siteConfig.location}</span>
+              <a href={whatsappBase} target="_blank" rel="noopener" class="text-ink hover:text-accent">WhatsApp: {siteConfig.phoneDisplay}</a>
+              <a href={`mailto:${siteConfig.email}`} class="text-ink hover:text-accent">{siteConfig.email}</a>
+              <span class="text-[rgba(21,23,26,0.6)]">{siteConfig.location}</span>
             </div>
           </div>
         </div>
-        <div class="border-t border-divider pt-5 text-[13px] text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]">
+        <div class="border-t border-line pt-5 text-[13px] text-[rgba(21,23,26,0.5)]">
           &copy; {new Date().getFullYear()} {siteConfig.legalName}.
         </div>
       </footer>

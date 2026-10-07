@@ -1,23 +1,18 @@
 ---
-import Corners from './Corners.astro';
-
 interface Props {
   src?: string;
   alt: string;
-  width?: number;
-  height?: number;
   ratio?: string;
-  framed?: boolean;
+  shadow?: boolean;
   eager?: boolean;
   class?: string;
 }
-const { src, alt, width, height, ratio = '3 / 2', framed = true, eager = false, class: className = '' } = Astro.props;
+const { src, alt, ratio = '3 / 2', shadow = true, eager = false, class: className = '' } = Astro.props;
 ---
-<figure class:list={['duotone', framed && 'blueprint', className]} style={`aspect-ratio:${ratio};`}>
+<figure class:list={['photo', shadow && 'photo-shadow', className]} style={`aspect-ratio:${ratio};`}>
   {src ? (
-    <div class="photo"><img src={src} alt={alt} width={width} height={height} loading={eager ? 'eager' : 'lazy'} decoding="async" /></div>
+    <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
   ) : (
     <div class="photo-empty" role="img" aria-label={alt}>Photo coming soon</div>
   )}
-  {framed && <Corners />}
 </figure>

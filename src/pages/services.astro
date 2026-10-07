@@ -1,9 +1,8 @@
 ---
-import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
 import PageHero from '../components/PageHero.astro';
 import Photo from '../components/Photo.astro';
-import SectionLabel from '../components/SectionLabel.astro';
 import Steps from '../components/Steps.astro';
 import Layout from '../layouts/Layout.astro';
 import { whatsappLink, whatsappMessages } from '../site.config';
@@ -19,16 +18,6 @@ const services = [
   { kicker: 'ENG', title: 'Engineering Support', body: 'Structured help on mechanisms, fixtures, enclosures, assemblies.' },
 ];
 
-const training = [
-  '3D Printing Intro',
-  'CAD & Modelling',
-  'Slicing & Print Prep',
-  'Printer Setup',
-  'Troubleshooting',
-  'Design for AM',
-  'Project-Based Prototyping',
-];
-
 const steps = [
   { body: 'Send your file, sketch or idea.' },
   { body: 'We review and recommend the approach.' },
@@ -37,33 +26,34 @@ const steps = [
 ];
 ---
 
-<Layout title="Services | AJ Tech Maestros" description="3D printing, CAD modelling, prototyping, replacement parts, small-batch production, engineering support and practical digital fabrication training.">
-  <PageHero label="Services" title="Sketch to finished part." description="Pick a service, or just send the problem — we'll tell you which one it needs." />
+<Layout title="Services | AJ Tech Maestros" description="3D printing, CAD modelling, prototyping, replacement parts, small-batch production and engineering support from AJ Tech Maestros.">
+  <PageHero title="Sketch to finished part." description="Pick a service, or just send the problem — we'll tell you which one it needs." />
 
   <section class="pb-14">
-    <Photo src="/images/services-banner.webp" alt="AJ Tech Maestros workshop and fabrication process" width={1200} height={800} ratio="16 / 6" eager />
+    <Photo src="/images/services-banner.webp" alt="Gloved hands holding 3D-printed lattice parts" ratio="16 / 6" eager />
   </section>
 
   <section class="pb-14">
-    <SectionLabel />
     <div class="card-grid">
       {services.map((s) => <Card kicker={s.kicker} title={s.title}>{s.body}</Card>)}
     </div>
   </section>
 
-  <section class="pb-14">
-    <SectionLabel label="Training" title="Practical digital fabrication training." description="For individuals, teams, schools and institutions — hands-on, not theoretical." />
-    <div class="flex flex-wrap gap-2.5">
-      {training.map((topic) => <span class="tag tag-outline">{topic}</span>)}
+  <section class="panel-dark mb-14 grid items-center gap-6 py-11 [grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))]">
+    <div>
+      <span class="eyebrow">Training</span>
+      <h2 class="text-[clamp(24px,3vw,32px)] tracking-[-0.01em]">Want to learn this yourself?</h2>
+      <p class="mt-3.5 mb-0 max-w-[44ch] text-[15px] leading-[1.6]">The AJ Tech Academy runs hands-on digital fabrication courses for individuals, teams and institutions.</p>
     </div>
+    <div><Button href="/academy/">Explore the Academy →</Button></div>
   </section>
 
-  <section class="border-t border-divider pt-12 pb-16">
-    <span class="kicker mb-5">How it works</span>
+  <section class="pb-16">
+    <span class="eyebrow mb-4">How it works</span>
     <Steps steps={steps} />
     <div class="btn-row mt-9">
       <Button href={whatsappLink(whatsappMessages.services)}>WhatsApp Us</Button>
-      <Button href="/projects/" variant="ghost">View Projects</Button>
+      <Button href="/projects/" variant="outline">View Projects</Button>
     </div>
   </section>
 </Layout>

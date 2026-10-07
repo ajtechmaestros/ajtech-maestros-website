@@ -7,18 +7,19 @@ interface Props {
   title: string;
   description?: string;
   whatsappMessage?: string;
+  primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
   large?: boolean;
 }
-const { label, title, description, whatsappMessage, secondaryHref, secondaryLabel, large = false } = Astro.props;
+const { label, title, description, whatsappMessage, primaryLabel = 'WhatsApp Us', secondaryHref, secondaryLabel, large = false } = Astro.props;
 ---
-<section class="border-t border-divider pt-12 pb-16">
-  {label && <span class="kicker mb-3">{label}</span>}
-  <h2 class:list={['h2', large && 'h2-lg']}>{title}</h2>
-  {description && <p class="lead mt-4 max-w-[50ch] text-[16px]">{description}</p>}
+<section class="panel-dark mb-[72px]">
+  {label && <span class="eyebrow">{label}</span>}
+  <h2 class:list={['tracking-[-0.01em]', large ? 'text-[clamp(28px,3.5vw,42px)]' : 'text-[clamp(26px,3.5vw,38px)]']}>{title}</h2>
+  {description && <p class="mt-4 mb-0 max-w-[50ch] text-[16px] leading-[1.6]">{description}</p>}
   <div class="btn-row mt-7">
-    <Button href={whatsappLink(whatsappMessage)}>WhatsApp Us</Button>
-    {secondaryHref && secondaryLabel && <Button href={secondaryHref} variant="ghost">{secondaryLabel}</Button>}
+    <Button href={whatsappLink(whatsappMessage)}>{primaryLabel}</Button>
+    {secondaryHref && secondaryLabel && <Button href={secondaryHref} variant="outline-light">{secondaryLabel}</Button>}
   </div>
 </section>

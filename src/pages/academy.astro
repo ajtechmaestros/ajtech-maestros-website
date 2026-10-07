@@ -1,0 +1,81 @@
+---
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import CTASection from '../components/CTASection.astro';
+import Photo from '../components/Photo.astro';
+import Layout from '../layouts/Layout.astro';
+import { whatsappLink, whatsappMessages } from '../site.config';
+
+const audiences = [
+  { title: 'Clinics & biomedical teams', body: 'Make and maintain your own equipment parts in-house.' },
+  { title: 'Startups & product teams', body: 'Prototype faster without waiting on an outside shop.' },
+  { title: 'Schools & institutions', body: 'Cohort training to bring digital fabrication into the curriculum.' },
+  { title: 'Individual makers', body: 'Go from curious to confident on your own projects.' },
+];
+
+const courses = [
+  { title: '3D Printing Fundamentals', body: 'How the machines, materials and process actually work.' },
+  { title: 'CAD & 3D Modelling', body: 'Turn a sketch or measurement into a printable model.' },
+  { title: 'Slicing & Print Prep', body: 'Settings, supports and orientation that decide if a print works.' },
+  { title: 'Printer Setup & Maintenance', body: 'Calibration, upkeep and keeping a machine reliable long-term.' },
+  { title: 'Troubleshooting & Repair', body: 'Diagnose failed prints and fix machines instead of replacing them.' },
+  { title: 'Design for Additive Manufacturing', body: 'Design geometry that prints cleanly and performs under load.' },
+  { title: 'Project-Based Prototyping', body: 'Bring your own idea and leave with a working prototype.' },
+];
+---
+
+<Layout title="Academy | AJ Tech Maestros" description="Hands-on CAD, 3D printing and digital fabrication training from AJ Tech Maestros for individuals, teams, schools and institutions.">
+  <section class="split pt-14 pb-6">
+    <div class="fade-up">
+      <h1 class="display text-[clamp(38px,5.5vw,64px)] leading-[1.08]">Hands-on training, not theory.</h1>
+      <p class="lead mt-5 max-w-[48ch] text-[18px]">Learn CAD, 3D printing and digital fabrication the way we actually do it — on real machines, with real projects.</p>
+      <div class="btn-row mt-7">
+        <Button href={whatsappLink(whatsappMessages.academy)}>WhatsApp Us</Button>
+        <Button href="#courses" variant="outline">See Courses</Button>
+      </div>
+    </div>
+    <Photo class="fade-up-late shadow-[0_24px_48px_rgba(21,23,26,0.14)]" src="/images/academy-hero.webp" alt="Students working on a laptop beside a 3D printer" eager />
+  </section>
+
+  <section class="pt-16 pb-14">
+    <span class="eyebrow">Who it's for</span>
+    <h2 class="h2 mb-7">Built for different teams, same hands-on method.</h2>
+    <div class="card-grid [&_.card-title]:text-[16px]" style="--card-min:220px;">
+      {audiences.map((a) => <Card title={a.title}>{a.body}</Card>)}
+    </div>
+  </section>
+
+  <section id="courses" class="scroll-mt-6 pb-14">
+    <span class="eyebrow">Courses</span>
+    <h2 class="h2 mb-7">Seven courses, one practical track.</h2>
+    <div class="card-grid [&_.card-title]:text-[16px]">
+      {courses.map((c) => <Card title={c.title}>{c.body}</Card>)}
+    </div>
+  </section>
+
+  <section class="pb-14">
+    <div class="card-grid gap-6" style="--card-min:280px;">
+      <div class="card p-[30px]">
+        <span class="eyebrow">Certification</span>
+        <h3 class="mb-2.5 text-[20px]">You leave with proof of skill.</h3>
+        <p class="m-0 text-[15px] leading-[1.6] text-muted">Every course ends with a practical assessment on a real part. Pass it, and you get an AJ Tech Maestros certificate of completion.</p>
+      </div>
+      <div class="card p-[30px]">
+        <span class="eyebrow">Pricing</span>
+        <h3 class="mb-2.5 text-[20px]">Priced per person, or per cohort.</h3>
+        <p class="m-0 text-[15px] leading-[1.6] text-muted">Individual, team and institutional rates vary by course and group size — message us for a quote.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    large
+    label="Enquire"
+    title="Ready to train your team?"
+    description="Tell us your group size and what you want to learn — we'll send course options and pricing."
+    whatsappMessage={whatsappMessages.academyPricing}
+    primaryLabel="Get Training Pricing"
+    secondaryHref="/contact/"
+    secondaryLabel="Contact Us"
+  />
+</Layout>

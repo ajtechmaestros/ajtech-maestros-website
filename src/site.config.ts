@@ -15,6 +15,7 @@ export const siteConfig = {
 export const navItems = [
   { href: '/', label: 'Home' },
   { href: '/services/', label: 'Services' },
+  { href: '/academy/', label: 'Academy' },
   { href: '/products/', label: 'Products' },
   { href: '/projects/', label: 'Projects' },
   { href: '/about/', label: 'About' },
@@ -27,6 +28,8 @@ export const whatsappMessages = {
   project: "Hello AJ Tech Maestros, I'd like to talk about a project.",
   services: "Hello AJ Tech Maestros, I'd like to ask about your services.",
   product: "Hello AJ Tech Maestros, I'd like to ask about a custom product.",
+  academy: "Hello AJ Tech Maestros, I'd like to ask about Academy training.",
+  academyPricing: "Hello AJ Tech Maestros, I'd like training pricing for the Academy.",
 };
 
 export const whatsappLink = (message: string = whatsappMessages.project) =>

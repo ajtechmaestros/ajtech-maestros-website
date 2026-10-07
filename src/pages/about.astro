@@ -2,32 +2,37 @@
 import Card from '../components/Card.astro';
 import CTASection from '../components/CTASection.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionLabel from '../components/SectionLabel.astro';
+import Photo from '../components/Photo.astro';
 import Layout from '../layouts/Layout.astro';
 import { siteConfig } from '../site.config';
 ---
 
 <Layout title="About | AJ Tech Maestros" description="AJ Tech Maestros is the public brand of ABE & JACK TECH MAESTROS LTD — CAD, prototyping, 3D printing and practical engineering support.">
   <PageHero
-    label="About"
     title="Engineers first. Salespeople never."
     description={`${siteConfig.name} is the public brand of ${siteConfig.legalName} — CAD, prototyping, 3D printing and practical engineering support, under one roof.`}
   />
 
   <section class="pb-14">
-    <SectionLabel label="Our evolution" title="From Abe3D to a broader platform." />
+    <Photo src="/images/about-team.webp" alt="The AJ Tech Maestros team in the workshop" ratio="16 / 7" eager />
+  </section>
+
+  <section class="pb-14">
+    <span class="eyebrow">Our evolution</span>
+    <h2 class="h2 mb-[26px]">From Abe3D to a broader platform.</h2>
     <div class="card-grid" style="--card-min:260px;">
-      <Card kicker="Foundation" title="Digital Fabrication">Custom 3D printing, CAD modelling, prototyping, replacement parts and training — where it started.</Card>
-      <Card kicker="Expansion" title="Engineering & Product Development">Mechanisms, reverse engineering, DFM and broader fabrication projects — where it's going.</Card>
+      <Card lift={false} kicker="Foundation" title="Digital Fabrication">Custom 3D printing, CAD modelling, prototyping, replacement parts and training — where it started.</Card>
+      <Card lift={false} kicker="Expansion" title="Engineering & Product Development">Mechanisms, reverse engineering, DFM and broader fabrication projects — where it's going.</Card>
     </div>
   </section>
 
   <section class="pb-16">
-    <SectionLabel label="How we work" title="Practical, iterative, grounded." />
-    <div class="card-grid" style="--card-min:220px;">
-      <Card title="Design With Purpose">Start from the problem and constraints, not the process.</Card>
-      <Card title="Prototype Before Scaling">Cheap iteration before any production commitment.</Card>
-      <Card title="Build Capability">Training and documentation that strengthen local skills over time.</Card>
+    <span class="eyebrow">How we work</span>
+    <h2 class="h2 mb-[26px]">Practical, iterative, grounded.</h2>
+    <div class="card-grid [&_.card-title]:text-[16px]" style="--card-min:220px;">
+      <Card lift={false} title="Design With Purpose">Start from the problem and constraints, not the process.</Card>
+      <Card lift={false} title="Prototype Before Scaling">Cheap iteration before any production commitment.</Card>
+      <Card lift={false} title="Build Capability">Training and documentation that strengthen local skills over time.</Card>
     </div>
   </section>
 
