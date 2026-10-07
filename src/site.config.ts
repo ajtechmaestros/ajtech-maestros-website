@@ -7,6 +7,7 @@ export const siteConfig = {
     'AJ Tech Maestros is an engineering and product development company offering CAD design, 3D printing, rapid prototyping, digital fabrication and related technology services.',
   email: 'ajtechmaestros@gmail.com',
   phone: '+254703656580',
+  phoneDisplay: '+254 703 656580',
   whatsappNumber: '254703656580',
   location: 'Roysambu, Nairobi, Kenya',
 };
@@ -17,13 +18,18 @@ export const navItems = [
   { href: '/products/', label: 'Products' },
   { href: '/projects/', label: 'Projects' },
   { href: '/about/', label: 'About' },
-  { href: '/request-quote/', label: 'Request Quote' },
   { href: '/contact/', label: 'Contact' },
 ];
 
-export const whatsappMessage =
-  'Hello AJ Tech Maestros, I would like to ask about your design, engineering, prototyping or 3D printing services.';
+export const whatsappBase = `https://wa.me/${siteConfig.whatsappNumber}`;
 
-export const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
-  whatsappMessage,
-)}`;
+export const whatsappMessages = {
+  project: "Hello AJ Tech Maestros, I'd like to talk about a project.",
+  services: "Hello AJ Tech Maestros, I'd like to ask about your services.",
+  product: "Hello AJ Tech Maestros, I'd like to ask about a custom product.",
+};
+
+export const whatsappLink = (message: string = whatsappMessages.project) =>
+  `${whatsappBase}?text=${encodeURIComponent(message)}`;
+
+export const whatsappUrl = whatsappLink();

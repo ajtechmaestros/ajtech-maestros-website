@@ -1,0 +1,13 @@
+---
+interface Props { steps: { title?: string; body: string }[]; }
+const { steps } = Astro.props;
+---
+<div class="steps">
+  {steps.map((step, i) => (
+    <div>
+      <div class="step-num">{String(i + 1).padStart(2, '0')}</div>
+      {step.title && <div class="step-title">{step.title}</div>}
+      <p class:list={['step-body', !step.title && 'mt-2']}>{step.body}</p>
+    </div>
+  ))}
+</div>
