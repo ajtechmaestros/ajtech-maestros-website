@@ -12,8 +12,8 @@ Website for **ABE & JACK TECH MAESTROS LTD**, trading publicly as **AJ Tech Maes
 ## Stack
 
 - Astro
-- Tailwind CSS (tokens and blueprint component classes live in `src/styles/global.css`)
-- Barlow / Barlow Condensed via Google Fonts
+- Tailwind CSS (colour tokens and component classes live in `src/styles/global.css`)
+- Manrope via Google Fonts
 - WhatsApp-first contact form, plus a Netlify Forms-compatible quote form at `/request-quote/`
 - GitHub Actions build validation
 
@@ -38,7 +38,7 @@ The old Abe3D repository remains untouched as an archive/reference.
 ### Still to finalize
 
 - Final approved logo/SVG and favicon
-- Remaining photography: Trophies & Awards product photo, the six portfolio photos on Projects (`port-01`…`port-06`) and the About team/workshop banner
+- Remaining photography: Trophies & Awards product photo
 - Social-media URLs
 - Production domain and Netlify site configuration
 - Final SEO/social-sharing metadata
