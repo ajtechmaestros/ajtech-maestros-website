@@ -20,6 +20,7 @@ export const navItems = [
   { href: '/projects/', label: 'Projects' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
+  { href: '/get-a-quote/', label: 'Get a Quote' },
 ];
 
 export const whatsappBase = `https://wa.me/${siteConfig.whatsappNumber}`;

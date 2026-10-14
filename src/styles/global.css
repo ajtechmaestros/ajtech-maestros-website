@@ -137,7 +137,11 @@
   .nav-links { display: flex; align-items: center; gap: 16px 24px; font-weight: 600; font-size: 15px; }
   .nav-links a { color: var(--color-ink); white-space: nowrap; transition: color 0.2s ease; }
   .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--color-accent); }
-  @media (max-width: 1023px) {
+  @media (min-width: 1080px) and (max-width: 1279px) {
+    .nav { gap: 16px; }
+    .nav-links { gap: 16px; font-size: 14px; }
+  }
+  @media (max-width: 1079px) {
     .nav { padding: 18px 0 0; gap: 14px 12px; }
     .nav-brand { font-size: 16px; gap: 8px; }
     .nav-links {
