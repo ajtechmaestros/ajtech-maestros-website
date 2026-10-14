@@ -5,7 +5,6 @@ import CTASection from '../components/CTASection.astro';
 import Photo from '../components/Photo.astro';
 import Steps from '../components/Steps.astro';
 import Layout from '../layouts/Layout.astro';
-import { whatsappUrl } from '../site.config';
 
 const reasons = [
   { title: 'Straight quotes', body: 'Tell us what you need on WhatsApp — pricing and timeline, same day.' },
@@ -21,8 +20,8 @@ const services = [
 ];
 
 const tourSteps = [
-  { title: 'Start here', body: 'Tap WhatsApp to tell us what you need — a sketch, a file, or a photo of a broken part.', next: 'Next' },
-  { title: 'Get your quote', body: "We'll reply with pricing and a timeline, usually the same day.", next: 'Get a Quote' },
+  { title: 'Start here', body: 'Pick a part, material and quantity to see a ballpark price in seconds.', next: 'Next' },
+  { title: 'Get your quote', body: "Send it to us on WhatsApp — we'll confirm pricing and a timeline, usually the same day.", next: 'Got it' },
 ];
 ---
 
@@ -34,7 +33,7 @@ const tourSteps = [
       <div class="btn-row mt-[30px]">
         <div class="tour-anchor" id="home-tour" data-steps={JSON.stringify(tourSteps)}>
           <div class="tour-ring" data-tour-ring hidden></div>
-          <Button href={whatsappUrl}>WhatsApp Us</Button>
+          <Button href="/get-a-quote/">Get a Quote</Button>
           <div class="tour-card" data-tour-card role="dialog" aria-label="Quick tour" hidden>
             <div class="tour-dots" data-tour-dots>{tourSteps.map(() => <span></span>)}</div>
             <div class="mb-1.5 text-[15px] font-extrabold" data-tour-title></div>
@@ -84,13 +83,13 @@ const tourSteps = [
     label="Start a project"
     title="Got something to build?"
     description="Send a sketch, a file, or a photo of the broken part. We'll tell you the fastest way to a real one."
-    secondaryHref="/contact/"
+    secondaryHref="/get-a-quote/"
     secondaryLabel="Request a Quote"
   />
 </Layout>
 
 <script>
-  // Two-step tour anchored to the hero WhatsApp button, shown once per browser.
+  // Two-step tour anchored to the hero Get a Quote button, shown once per browser.
   const SEEN_KEY = 'ajHomeTourSeen';
   const root = document.querySelector<HTMLElement>('#home-tour');
   const hasSeen = () => {
